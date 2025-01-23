@@ -1,10 +1,28 @@
-# 0 "/home/ghazal/CLionProjects/NextFlick/main.cpp"
+# 0 "/home/ghazal/CLionProjects/NextFlick/splayTree.cpp"
 # 1 "/home/ghazal/CLionProjects/NextFlick/cmake-build-debug//"
 # 0 "<built-in>"
 # 0 "<command-line>"
 # 1 "/usr/include/stdc-predef.h" 1 3 4
 # 0 "<command-line>" 2
-# 1 "/home/ghazal/CLionProjects/NextFlick/main.cpp"
+# 1 "/home/ghazal/CLionProjects/NextFlick/splayTree.cpp"
+
+
+
+
+# 1 "/home/ghazal/CLionProjects/NextFlick/splayTree.h" 1
+
+
+
+
+
+
+# 1 "/home/ghazal/CLionProjects/NextFlick/Media.h" 1
+
+
+
+
+
+
 # 1 "/usr/include/c++/14.1.1/iostream" 1 3
 # 36 "/usr/include/c++/14.1.1/iostream" 3
        
@@ -43299,22 +43317,7 @@ namespace std __attribute__ ((__visibility__ ("default")))
 
 
 }
-# 2 "/home/ghazal/CLionProjects/NextFlick/main.cpp" 2
-# 1 "/home/ghazal/CLionProjects/NextFlick/Series.h" 1
-
-
-
-
-
-
-# 1 "/home/ghazal/CLionProjects/NextFlick/Media.h" 1
-
-
-
-
-
-
-
+# 8 "/home/ghazal/CLionProjects/NextFlick/Media.h" 2
 # 1 "/usr/include/c++/14.1.1/vector" 1 3
 # 58 "/usr/include/c++/14.1.1/vector" 3
        
@@ -59223,63 +59226,7 @@ public:
 
     virtual void displayDetails() const = 0;
 };
-# 8 "/home/ghazal/CLionProjects/NextFlick/Series.h" 2
-class Series : public Media {
-private:
-    int episodeDuration;
-    int seasons;
-    int episodes;
-
-public:
-    Series(int id,const std::string& name, int releaseYear, int episodeDuration, const std::string& country,const std::string& genre, const std::string& language, double rating, const std::string& summary,int seasons, int episodes)
-            : Media(id,name, releaseYear, country, genre, language, rating, summary),
-              episodeDuration(episodeDuration), seasons(seasons), episodes(episodes) {}
-
-    void displayDetails() const override {
-        std::cout << "Series: " << name << "\n"
-                  << "Year: " << releaseYear << "\n"
-                  << "Episode Duration: " << episodeDuration << " minutes\n"
-                  << "Country: " << country << "\n"
-                  << "Genre: " << genre << "\n"
-                  << "Language: " << language << "\n"
-                  << "Rating: " << rating << "\n"
-                  << "Summary: " << summary << "\n"
-                  << "Seasons: " << seasons << "\n"
-                  << "Episodes: " << episodes << "\n";
-    }
-};
-# 3 "/home/ghazal/CLionProjects/NextFlick/main.cpp" 2
-# 1 "/home/ghazal/CLionProjects/NextFlick/Film.h" 1
-# 9 "/home/ghazal/CLionProjects/NextFlick/Film.h"
-class Film : public Media {
-private:
-    int duration;
-
-public:
-    Film(int id,const std::string& name, int releaseYear, int duration, const std::string& country,
-         const std::string& genre, const std::string& language, double rating, const std::string& summary)
-            : Media(id,name, releaseYear, country, genre, language, rating, summary), duration(duration) {}
-
-    void displayDetails() const override {
-        std::cout << "Film: " << name << "\n"
-                  << "Year: " << releaseYear << "\n"
-                  << "Duration: " << duration << " minutes\n"
-                  << "Country: " << country << "\n"
-                  << "Genre: " << genre << "\n"
-                  << "Language: " << language << "\n"
-                  << "Rating: " << rating << "\n"
-                  << "Summary: " << summary << "\n";
-    }
-};
-# 4 "/home/ghazal/CLionProjects/NextFlick/main.cpp" 2
-# 1 "/home/ghazal/CLionProjects/NextFlick/splayTree.h" 1
-
-
-
-
-
-
-
+# 8 "/home/ghazal/CLionProjects/NextFlick/splayTree.h" 2
 struct Node {
     Media* media;
     int key;
@@ -59296,38 +59243,88 @@ class splayTree {
         Node* splay(Node* root, int key);
         void insert(Media* media);
 };
-# 5 "/home/ghazal/CLionProjects/NextFlick/main.cpp" 2
-# 1 "/home/ghazal/CLionProjects/NextFlick/Globals.h" 1
-# 9 "/home/ghazal/CLionProjects/NextFlick/Globals.h"
-extern splayTree GelobalSplayTree;
-# 6 "/home/ghazal/CLionProjects/NextFlick/main.cpp" 2
-# 1 "/home/ghazal/CLionProjects/NextFlick/admin.h" 1
-# 11 "/home/ghazal/CLionProjects/NextFlick/admin.h"
-using namespace std;
+# 6 "/home/ghazal/CLionProjects/NextFlick/splayTree.cpp" 2
+Node* splayTree::newNode( Media* media) {
+    Node* node = new Node();
+    node->key = media->getId();
+    node->media = media;
+    node->left = node->right = nullptr;
+    return node;
+}
 
-class admin {
-protected:
-    int id;
-    int idMedia=0;
-    string username;
-    string password;
-public:
-    admin(int Id, string Username, string Password): id(Id),username(Username),password(Password){}
-    void addContent();
-    void addMovie();
-    void addSeries();
-};
-# 7 "/home/ghazal/CLionProjects/NextFlick/main.cpp" 2
+Node* splayTree::rightRotate(Node* x) {
+    Node* y = x->left;
+    x->left = y->right;
+    y->right = x;
+    return y;
+}
 
-splayTree GelobalSplayTree;
-int main() {
-    Media* s= new Series(0,"g",200,12,"hh","hgug","ihuih",6.0,"hghg",12,10);
-    Media* f=new Film(1,"g",200,12,"hh","hgug","ihuih",6.0,"hghg");
-    splayTree tree;
-    tree.insert(s);
-    tree.insert(f);
-    admin* m = new admin(0,"admin","admin");
-    m->addContent();
+Node* splayTree::leftRotate(Node* x) {
+    Node* y = x->right;
+    x->right = y->left;
+    y->left = x;
+    return y;
+}
 
-    return 0;
+Node* splayTree::splay(Node* root, int key) {
+    if (root == nullptr || root->key == key)
+        return root;
+
+    if (root->key > key) {
+        if (root->left == nullptr)
+            return root;
+
+        if (root->left->key > key) {
+            root->left->left = splay(root->left->left, key);
+            root = rightRotate(root);
+        }
+        else if (root->left->key < key) {
+            root->left->right = splay(root->left->right, key);
+            if (root->left->right != nullptr)
+                root->left = leftRotate(root->left);
+        }
+        return (root->left == nullptr) ? root : rightRotate(root);
+    }
+    else {
+        if (root->right == nullptr)
+            return root;
+
+        if (root->right->key > key) {
+            root->right->left = splay(root->right->left, key);
+            if (root->right->left != nullptr)
+                root->right = rightRotate(root->right);
+        }
+        else if (root->right->key < key) {
+            root->right->right = splay(root->right->right, key);
+            root = leftRotate(root);
+        }
+        return (root->right == nullptr) ? root : leftRotate(root);
+    }
+}
+
+void splayTree::insert(Media* media) {
+    int key=media->getId();
+    if (root == nullptr) {
+        root = newNode(media);
+        return;
+    }
+
+    root = splay(root, key);
+
+    if (root->key == key)
+        return;
+
+    Node* node = newNode(media);
+
+    if (root->key > key) {
+        node->right = root;
+        node->left = root->left;
+        root->left = nullptr;
+    }
+    else {
+        node->left = root;
+        node->right = root->right;
+        root->right = nullptr;
+    }
+    root = node;
 }

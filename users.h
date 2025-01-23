@@ -6,6 +6,7 @@
 #define NEXTFLICK_USERS_H
 #include "user.h"
 #include <vector>
+#include "Globals.h"
 class users {
 protected:
     vector<user> arrUsers;

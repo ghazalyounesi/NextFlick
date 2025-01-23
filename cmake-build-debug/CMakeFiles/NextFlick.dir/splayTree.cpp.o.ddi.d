@@ -1,6 +1,8 @@
-CMakeFiles/NextFlick.dir/admin.cpp.o.ddi: \
- /home/ghazal/CLionProjects/NextFlick/admin.cpp \
- /usr/include/stdc-predef.h /home/ghazal/CLionProjects/NextFlick/admin.h \
+CMakeFiles/NextFlick.dir/splayTree.cpp.o.ddi: \
+ /home/ghazal/CLionProjects/NextFlick/splayTree.cpp \
+ /usr/include/stdc-predef.h \
+ /home/ghazal/CLionProjects/NextFlick/splayTree.h \
+ /home/ghazal/CLionProjects/NextFlick/Media.h \
  /usr/include/c++/14.1.1/iostream \
  /usr/include/c++/14.1.1/bits/requires_hosted.h \
  /usr/include/c++/14.1.1/x86_64-pc-linux-gnu/bits/c++config.h \
@@ -143,10 +145,7 @@ CMakeFiles/NextFlick.dir/admin.cpp.o.ddi: \
  /usr/include/c++/14.1.1/bits/locale_facets.tcc \
  /usr/include/c++/14.1.1/bits/basic_ios.tcc \
  /usr/include/c++/14.1.1/bits/ostream.tcc /usr/include/c++/14.1.1/istream \
- /usr/include/c++/14.1.1/bits/istream.tcc \
- /home/ghazal/CLionProjects/NextFlick/Film.h \
- /home/ghazal/CLionProjects/NextFlick/Media.h \
- /usr/include/c++/14.1.1/vector \
+ /usr/include/c++/14.1.1/bits/istream.tcc /usr/include/c++/14.1.1/vector \
  /usr/include/c++/14.1.1/bits/stl_uninitialized.h \
  /usr/include/c++/14.1.1/bits/stl_vector.h \
  /usr/include/c++/14.1.1/bits/stl_bvector.h \
@@ -185,7 +184,4 @@ CMakeFiles/NextFlick.dir/admin.cpp.o.ddi: \
  /usr/include/c++/14.1.1/bits/ranges_uninitialized.h \
  /usr/include/c++/14.1.1/bits/ranges_algobase.h \
  /usr/include/c++/14.1.1/pstl/glue_memory_defs.h \
- /usr/include/c++/14.1.1/pstl/execution_defs.h \
- /home/ghazal/CLionProjects/NextFlick/Series.h \
- /home/ghazal/CLionProjects/NextFlick/Globals.h \
- /home/ghazal/CLionProjects/NextFlick/splayTree.h
+ /usr/include/c++/14.1.1/pstl/execution_defs.h

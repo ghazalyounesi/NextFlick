@@ -94,7 +94,22 @@ build CMakeFiles/NextFlick.dir/admin.cpp.o: CXX_COMPILER__NextFlick_scanned_Debu
   OBJECT_FILE_DIR = CMakeFiles/NextFlick.dir
   dyndep = CMakeFiles/NextFlick.dir/CXX.dd
 
-build CMakeFiles/NextFlick.dir/CXX.dd | /home/ghazal/CLionProjects/NextFlick/cmake-build-debug/CMakeFiles/NextFlick.dir/CXXModules.json CMakeFiles/NextFlick.dir/main.cpp.o.modmap CMakeFiles/NextFlick.dir/users.cpp.o.modmap CMakeFiles/NextFlick.dir/admin.cpp.o.modmap: CXX_DYNDEP__NextFlick_Debug CMakeFiles/NextFlick.dir/main.cpp.o.ddi CMakeFiles/NextFlick.dir/users.cpp.o.ddi CMakeFiles/NextFlick.dir/admin.cpp.o.ddi | /home/ghazal/CLionProjects/NextFlick/cmake-build-debug/CMakeFiles/NextFlick.dir/CXXDependInfo.json
+build CMakeFiles/NextFlick.dir/splayTree.cpp.o.ddi: CXX_SCAN__NextFlick_Debug /home/ghazal/CLionProjects/NextFlick/splayTree.cpp || cmake_object_order_depends_target_NextFlick
+  DEP_FILE = CMakeFiles/NextFlick.dir/splayTree.cpp.o.ddi.d
+  DYNDEP_INTERMEDIATE_FILE = CMakeFiles/NextFlick.dir/splayTree.cpp.o.ddi
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  OBJ_FILE = CMakeFiles/NextFlick.dir/splayTree.cpp.o
+  PREPROCESSED_OUTPUT_FILE = CMakeFiles/NextFlick.dir/splayTree.cpp.o.ddi.i
+
+build CMakeFiles/NextFlick.dir/splayTree.cpp.o: CXX_COMPILER__NextFlick_scanned_Debug /home/ghazal/CLionProjects/NextFlick/splayTree.cpp | CMakeFiles/NextFlick.dir/splayTree.cpp.o.modmap || cmake_object_order_depends_target_NextFlick CMakeFiles/NextFlick.dir/CXX.dd
+  DEP_FILE = CMakeFiles/NextFlick.dir/splayTree.cpp.o.d
+  DYNDEP_MODULE_MAP_FILE = CMakeFiles/NextFlick.dir/splayTree.cpp.o.modmap
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles/NextFlick.dir
+  OBJECT_FILE_DIR = CMakeFiles/NextFlick.dir
+  dyndep = CMakeFiles/NextFlick.dir/CXX.dd
+
+build CMakeFiles/NextFlick.dir/CXX.dd | /home/ghazal/CLionProjects/NextFlick/cmake-build-debug/CMakeFiles/NextFlick.dir/CXXModules.json CMakeFiles/NextFlick.dir/main.cpp.o.modmap CMakeFiles/NextFlick.dir/users.cpp.o.modmap CMakeFiles/NextFlick.dir/admin.cpp.o.modmap CMakeFiles/NextFlick.dir/splayTree.cpp.o.modmap: CXX_DYNDEP__NextFlick_Debug CMakeFiles/NextFlick.dir/main.cpp.o.ddi CMakeFiles/NextFlick.dir/users.cpp.o.ddi CMakeFiles/NextFlick.dir/admin.cpp.o.ddi CMakeFiles/NextFlick.dir/splayTree.cpp.o.ddi | /home/ghazal/CLionProjects/NextFlick/cmake-build-debug/CMakeFiles/NextFlick.dir/CXXDependInfo.json
 
 
 # =============================================================================
@@ -104,7 +119,7 @@ build CMakeFiles/NextFlick.dir/CXX.dd | /home/ghazal/CLionProjects/NextFlick/cma
 #############################################
 # Link the executable NextFlick
 
-build NextFlick: CXX_EXECUTABLE_LINKER__NextFlick_Debug CMakeFiles/NextFlick.dir/main.cpp.o CMakeFiles/NextFlick.dir/users.cpp.o CMakeFiles/NextFlick.dir/admin.cpp.o
+build NextFlick: CXX_EXECUTABLE_LINKER__NextFlick_Debug CMakeFiles/NextFlick.dir/main.cpp.o CMakeFiles/NextFlick.dir/users.cpp.o CMakeFiles/NextFlick.dir/admin.cpp.o CMakeFiles/NextFlick.dir/splayTree.cpp.o
   FLAGS = -g
   OBJECT_DIR = CMakeFiles/NextFlick.dir
   POST_BUILD = :

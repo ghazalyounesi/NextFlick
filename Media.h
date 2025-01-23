@@ -11,6 +11,7 @@
 
 class Media {
 protected:
+    int id;
     std::string name;
     int releaseYear;
     std::string country;
@@ -20,9 +21,9 @@ protected:
     std::string summary;
 
 public:
-    Media(const std::string& name, int releaseYear, const std::string& country,const std::string& genre, const std::string& language, double rating, const std::string& summary)
-            : name(name), releaseYear(releaseYear), country(country),genre(genre), language(language), rating(rating), summary(summary) {}
-
+    Media(int ID,const std::string& name, int releaseYear, const std::string& country,const std::string& genre, const std::string& language, double rating, const std::string& summary)
+            : id(ID), name(name), releaseYear(releaseYear), country(country),genre(genre), language(language), rating(rating), summary(summary) {}
+    int getId() const { return id; }
     virtual ~Media() = default;
 
     virtual void displayDetails() const = 0;
