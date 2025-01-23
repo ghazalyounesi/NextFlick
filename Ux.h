@@ -15,7 +15,8 @@ class Ux {
 public:
     bool isValidPassword(const std::string& password);
     void SignUp();
-
+    void SignIn();
+    void Menu();
 
 };
 

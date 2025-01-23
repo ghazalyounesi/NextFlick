@@ -55,6 +55,9 @@ void Ux::SignUp(){
                 if (user.ExistUser(username , password)) {
                     std::cout<<"Password must be unique"<<std::endl;
                 }
+            if (username == "admin" || password == "admin") {
+                std::cout<<"Error!!"<<std::endl;
+            }
             else {
                 user.addUser(id,username,password);
                 id++;
@@ -62,8 +65,36 @@ void Ux::SignUp(){
             }
 
         }
-        if (username == "admin" || password == "admin") {
-            std::cout<<"Error!!"<<std::endl;
-        }
+
     }
+}
+
+void Ux::SignIn() {
+    while (true) {
+        string username;
+        std::cout<<"Sign In"<<std::endl;
+        std::cout<<"Please Enter Your UserName"<<std::endl;
+        cin>>username;
+        std::cout<<"Please Enter Your Password"<<std::endl;
+        string password;
+        cin>>password;
+            if (user.ExistUser(username , password)) {
+                cout<<"log in\n";
+                //userpanel
+                break;
+            }
+            if (username == "admin" || password == "admin") {
+               cout<<"Admin\n";
+                //adminpannel
+                break;
+            }
+            cout<<"Error!!Please try again..."<<std::endl;
+    }
+}
+
+void Ux::Menu() {
+    std::cout << "Menu Options:\n";
+    std::cout << "1 - SignUp\n";
+    std::cout << "2 - SignIn\n";
+    std::cout << "0- Exit\n";
 }
