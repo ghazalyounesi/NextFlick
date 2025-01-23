@@ -1,0 +1,3 @@
+/home/ghazal/CLionProjects/NextFlick/cmake-build-debug/CMakeFiles/NextFlick.dir
+/home/ghazal/CLionProjects/NextFlick/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/ghazal/CLionProjects/NextFlick/cmake-build-debug/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,21 @@
+# ninja log v6
+215	1499	1737615177376936885	CMakeFiles/NextFlick.dir/main.cpp.o.ddi	5c32e6d922736c67
+218	1499	1737615177380270275	CMakeFiles/NextFlick.dir/admin.cpp.o.ddi	fa5eee02beac010d
+218	1506	1737615177380270275	CMakeFiles/NextFlick.dir/users.cpp.o.ddi	7ab07ca79acaa550
+1506	1553	1737615178713626589	CMakeFiles/NextFlick.dir/CXX.dd	549424feee1072f8
+1506	1553	1737615178713626589	/home/ghazal/CLionProjects/NextFlick/cmake-build-debug/CMakeFiles/NextFlick.dir/CXXModules.json	549424feee1072f8
+1506	1553	1737615178713626589	CMakeFiles/NextFlick.dir/main.cpp.o.modmap	549424feee1072f8
+1506	1553	1737615178713626589	CMakeFiles/NextFlick.dir/users.cpp.o.modmap	549424feee1072f8
+1506	1553	1737615178713626589	CMakeFiles/NextFlick.dir/admin.cpp.o.modmap	549424feee1072f8
+1555	3522	1737615178716959979	CMakeFiles/NextFlick.dir/admin.cpp.o	9441bcf50806c981
+1553	3542	1737615178713626589	CMakeFiles/NextFlick.dir/main.cpp.o	19265757e7310e7
+1554	3656	1737615178713626589	CMakeFiles/NextFlick.dir/users.cpp.o	aba2c8ed8fba23e7
+3657	3951	1737615180816996172	NextFlick	6f1cbdd4dbdf34c6
+2	168	1737615231661205724	CMakeFiles/NextFlick.dir/main.cpp.o.ddi	5c32e6d922736c67
+168	176	1737615231824541871	CMakeFiles/NextFlick.dir/CXX.dd	549424feee1072f8
+168	176	1737615231824541871	/home/ghazal/CLionProjects/NextFlick/cmake-build-debug/CMakeFiles/NextFlick.dir/CXXModules.json	549424feee1072f8
+168	176	1737615231824541871	CMakeFiles/NextFlick.dir/main.cpp.o.modmap	549424feee1072f8
+168	176	1737615231824541871	CMakeFiles/NextFlick.dir/users.cpp.o.modmap	549424feee1072f8
+168	176	1737615231824541871	CMakeFiles/NextFlick.dir/admin.cpp.o.modmap	549424feee1072f8
+177	922	1737615231834542044	CMakeFiles/NextFlick.dir/main.cpp.o	19265757e7310e7
+922	1008	1737615232581221578	NextFlick	6f1cbdd4dbdf34c6
