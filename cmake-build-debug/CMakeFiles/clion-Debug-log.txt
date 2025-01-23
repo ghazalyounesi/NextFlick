@@ -1,4 +1,4 @@
-/home/ghazal/Downloads/clion-2024.3/bin/cmake/linux/x64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/home/ghazal/Downloads/clion-2024.3/bin/ninja/linux/x64/ninja -G Ninja -S /home/ghazal/CLionProjects/NextFlick -B /home/ghazal/CLionProjects/NextFlick/cmake-build-debug
--- Configuring done (1.3s)
--- Generating done (0.4s)
--- Build files have been written to: /home/ghazal/CLionProjects/NextFlick/cmake-build-debug
+"C:\Users\ZBook Fury\AppData\Local\JetBrains\CLion 2024.3.2\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "MinGW Makefiles" -S "C:\Users\ZBook Fury\CLionProjects\NextFlick" -B "C:\Users\ZBook Fury\CLionProjects\NextFlick\cmake-build-debug"
+-- Configuring done (0.2s)
+-- Generating done (0.0s)
+-- Build files have been written to: C:/Users/ZBook Fury/CLionProjects/NextFlick/cmake-build-debug

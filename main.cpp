@@ -1,7 +1,24 @@
 #include <iostream>
-
+#include "ux.h"
 int main() {
 
+    int cmd;
+    Ux ux;
+    while (cmd != 0) {
+        ux.Menu();
+        cout<<"Enter Command:"<<endl;
+        cin >> cmd;
+        cout<<endl;
+        switch (cmd) {
+            case 1:
+                ux.SignUp();
+            break;
+            case 2:
+                ux.SignIn();
+            break;
+        }
+
+    }
     return 0;
 }
 
