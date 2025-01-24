@@ -25,7 +25,7 @@ int main() {
     trie.insert(film8);
     trie.insert(film9);
 
-    /*cout << "Search prefix: 'Al'" << endl;
+    cout << "Search prefix: 'Al'" << endl;
     auto vex = trie.search("A");
     if (vex.empty()) {
         cout << "No matches found for the prefix 'Al'.\n";
@@ -45,7 +45,7 @@ int main() {
             cout << v->getName() << " ";
         }
         cout << endl;
-    }*/
+    }
 
 
     return 0;

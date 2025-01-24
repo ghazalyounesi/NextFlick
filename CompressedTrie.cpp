@@ -4,6 +4,14 @@
 
 #include "CompressedTrie.h"
 
+int CompressedTrie::findCommonPrefix(const string &str1, const string &str2) {
+    int i = 0;
+    while (i < str1.size() && i < str2.size() && str1[i] == str2[i]) {
+        ++i;
+    }
+    return i;
+}
+
 void CompressedTrie::insert(Media *film) {
     Node* current = root;
         string remainingKey = film->getName();
@@ -74,3 +82,54 @@ void CompressedTrie::printTree(Node *node, const string &prefix) {
     }
 }
 
+void CompressedTrie::collectResults(Node* node, vector<Media*>& results) {
+    if (node->isEnd) {
+        for (const auto& mediaPair : node->mediaMap) {
+            results.push_back(mediaPair.second);
+        }
+    }
+
+    for (const auto& child : node->children) {
+        collectResults(child.second, results);
+    }
+}
+vector<Media*> CompressedTrie:: search(const string& key) {
+        vector<Media*> results;
+        Node* current = root;
+        string remainingKey = key;
+
+        while (!remainingKey.empty()) {
+            bool isEdgeFound = false;
+
+
+            for (const auto& it : current->children) {
+                string edgeLabel = it.first;
+                int commonPrefixLength = findCommonPrefix(remainingKey, edgeLabel);
+
+                if (commonPrefixLength > 0) {
+                    isEdgeFound = true;
+
+                    if (commonPrefixLength == edgeLabel.size()) {
+                        current = it.second;
+                        remainingKey = substring(remainingKey, commonPrefixLength);
+
+
+                        if (remainingKey.empty()) {
+                            collectResults(current, results);
+                        }
+                    } else {
+                        collectResults(it.second, results);
+                        remainingKey.clear();
+                        break;
+                    }
+                    break;
+                }
+            }
+
+            if (!isEdgeFound) {
+                break;
+            }
+        }
+
+        return results;
+}

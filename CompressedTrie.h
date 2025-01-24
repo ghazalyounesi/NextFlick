@@ -31,13 +31,7 @@ private:
         return str.substr(index);
     }
 
-    int findCommonPrefix(const string& str1, const string& str2) {
-        int i = 0;
-        while (i < str1.size() && i < str2.size() && str1[i] == str2[i]) {
-            ++i;
-        }
-        return i;
-    }
+    int findCommonPrefix(const string& str1, const string& str2);
 
 public:
     // Constructor for the trie
@@ -62,6 +56,8 @@ public:
     }
     void insert(Media* film);
     void printTree(Node* node, const string& prefix);
+    vector<Media*> search(const string& query);
+    void collectResults(Node* node, vector<Media*>& results);
 
 };
 
