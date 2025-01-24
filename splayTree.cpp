@@ -88,6 +88,15 @@ void splayTree::insert(Media* media) {
     root = node;
 }
 
+Media* splayTree::find(int key) {
+    root = splay(root, key);
+
+    if (root != nullptr && root->key == key) {
+        return root->media;
+    }
+
+    return nullptr;
+}
 
 
 

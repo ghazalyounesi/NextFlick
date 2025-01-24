@@ -20,6 +20,8 @@ class splayTree {
         Node* leftRotate(Node* x);
         Node* splay(Node* root, int key);
         void insert(Media* media);
+        Media* find(int key);
+
 };
 
 
