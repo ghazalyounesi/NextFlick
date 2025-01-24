@@ -11,4 +11,10 @@ add_executable(NextFlick main.cpp
         admin.h
         Media.h
         Film.h
-        Series.h)
+        Series.h
+        splayTree.cpp
+        splayTree.h
+        Globals.h
+        MediaHashTable.cpp
+        MediaHashTable.h
+        GlobalsHash.h)

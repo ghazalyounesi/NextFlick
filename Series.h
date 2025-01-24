@@ -12,8 +12,8 @@ private:
     int episodes;
 
 public:
-    Series(const std::string& name, int releaseYear, int episodeDuration, const std::string& country,const std::string& genre, const std::string& language, double rating, const std::string& summary,int seasons, int episodes)
-            : Media(name, releaseYear, country, genre, language, rating, summary),
+    Series(int id,const std::string& name, int releaseYear, int episodeDuration, const std::string& country,const std::string& genre, const std::string& language, double rating, const std::string& summary,int seasons, int episodes)
+            : Media(id,name, releaseYear, country, genre, language, rating, summary),
               episodeDuration(episodeDuration), seasons(seasons), episodes(episodes) {}
 
     void displayDetails() const override {

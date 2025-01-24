@@ -1,4 +1,12 @@
 #include <iostream>
+#include "Series.h"
+#include "Film.h"
+#include "splayTree.h"
+#include "Globals.h"
+#include "admin.h"
+#include "user.h"
+splayTree GelobalSplayTree;
+MediaHashTable HashGenreRating;
 
 int main() {
 
