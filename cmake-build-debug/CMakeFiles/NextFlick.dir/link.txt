@@ -1,0 +1,3 @@
+"C:\Users\ZBook Fury\AppData\Local\JetBrains\CLion 2024.3.2\bin\cmake\win\x64\bin\cmake.exe" -E rm -f CMakeFiles\NextFlick.dir/objects.a
+C:\Users\ZBOOKF~1\AppData\Local\JETBRA~1\CLION2~1.2\bin\mingw\bin\ar.exe qc CMakeFiles\NextFlick.dir/objects.a @CMakeFiles\NextFlick.dir\objects1.rsp
+C:\Users\ZBOOKF~1\AppData\Local\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE -g -Wl,--whole-archive CMakeFiles\NextFlick.dir/objects.a -Wl,--no-whole-archive -o NextFlick.exe -Wl,--out-implib,libNextFlick.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\NextFlick.dir\linkLibs.rsp

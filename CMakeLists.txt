@@ -11,4 +11,6 @@ add_executable(NextFlick main.cpp
         admin.h
         Media.h
         Film.h
-        Series.h)
+        Series.h
+        CompressedTrie.cpp
+        CompressedTrie.h)
