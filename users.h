@@ -7,6 +7,7 @@
 #include "user.h"
 #include <vector>
 #include "Globals.h"
+#include "GlobalsHash.h"
 class users {
 protected:
     vector<user> arrUsers;
@@ -14,6 +15,7 @@ protected:
 public:
     users();
     void addUser(int Id, string username,string password);
+
 };
 
 

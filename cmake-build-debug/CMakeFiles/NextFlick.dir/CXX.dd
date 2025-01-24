@@ -7,3 +7,5 @@ build CMakeFiles/NextFlick.dir/admin.cpp.o: dyndep
 
 build CMakeFiles/NextFlick.dir/splayTree.cpp.o: dyndep
 
+build CMakeFiles/NextFlick.dir/MediaHashTable.cpp.o: dyndep
+

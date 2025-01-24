@@ -14,4 +14,7 @@ add_executable(NextFlick main.cpp
         Series.h
         splayTree.cpp
         splayTree.h
-        Globals.h)
+        Globals.h
+        MediaHashTable.cpp
+        MediaHashTable.h
+        GlobalsHash.h)

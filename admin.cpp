@@ -3,6 +3,9 @@
 //
 
 #include "admin.h"
+double admin::roundrating(double rating)const{
+    return std::round(rating * 10.0) / 10.0;
+}
 void admin::addContent() {
     cout << "Do you want to add a Movie or a Series? (Enter M for Movie, S for Series): ";
     char choice;
@@ -42,8 +45,9 @@ void admin::addMovie() {
     cout << "Summary: ";
     cin.ignore();
     getline(cin, summary);
-
+    rating= roundrating(rating);
     Film* movie = new Film(idMedia,name, releaseYear, duration, country, genre, language, rating, summary);
+    HashGenreRating.addMedia(movie);
     GelobalSplayTree.insert(movie);
     cout << "\nMovie added successfully!" << endl;
 
@@ -78,8 +82,9 @@ void admin::addSeries() {
     cin >> seasons;
     cout << "Number of Episodes: ";
     cin >> episodes;
-
+    rating= roundrating(rating);
     Series* series = new Series(idMedia,name, releaseYear, episodeDuration, country, genre, language, rating, summary, seasons, episodes);
+    HashGenreRating.addMedia(series);
     GelobalSplayTree.insert(series);
     cout << "\nSeries added successfully!" << endl;
 }

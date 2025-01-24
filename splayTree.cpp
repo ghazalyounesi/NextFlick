@@ -98,5 +98,38 @@ Media* splayTree::find(int key) {
     return nullptr;
 }
 
+std::string splayTree::findMaxGenreWithDepthScore() {
+    if (!root) return "No genres available";
+    std::unordered_map<std::string, int> genreScores;
 
+    std::string maxGenre;
+    int maxValue = 0;
+    std::queue<std::pair<Node*, int>> q;
+    q.push({root, 10});
 
+    int currentLevel = 1;
+
+    while (!q.empty()) {
+        auto [current, score] = q.front();
+        q.pop();
+
+        if (score <= 0) break;
+
+        if (current && current->media) {
+            const std::string& genre = current->media->getgenre();
+            genreScores[genre] += score;
+
+            if (genreScores[genre] > maxValue) {
+                maxValue = genreScores[genre];
+                maxGenre = genre;
+            }
+
+            if (current->left && score - 1 > 0)
+                q.push({current->left, score - 1});
+            if (current->right && score - 1 > 0)
+                q.push({current->right, score - 1});
+        }
+    }
+
+    return maxGenre.empty() ? "No genres available" : maxGenre;
+}

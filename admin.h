@@ -13,11 +13,12 @@ using namespace std;
 class admin {
 protected:
     int id;
-    int idMedia=0;
+    int idMedia=20;
     string username;
     string password;
 public:
     admin(int Id, string Username, string Password): id(Id),username(Username),password(Password){}
+    double roundrating(double rating)const;
     void addContent();
     void addMovie();
     void addSeries();

@@ -5,6 +5,10 @@
 #ifndef NEXTFLICK_SPLAYTREE_H
 #define NEXTFLICK_SPLAYTREE_H
 #include "Media.h"
+#include <vector>
+#include <unordered_map>
+#include <queue>
+#include <string>
 struct Node {
     Media* media;
     int key;
@@ -21,7 +25,7 @@ class splayTree {
         Node* splay(Node* root, int key);
         void insert(Media* media);
         Media* find(int key);
-
+        std::string findMaxGenreWithDepthScore();
 };
 
 
