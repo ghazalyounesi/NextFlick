@@ -76586,6 +76586,7 @@ public:
     std::string getname()const{return name;}
     std::string getcountry()const{return country;}
     std::string getlanguage()const{return language;}
+    std::string getsummery()const{return summary;}
     double averageRating(double userRating){
         rating=(rating*numberRated)+userRating;
         ++numberRated;
@@ -76594,7 +76595,7 @@ public:
         return rating;
     }
     virtual ~Media() = default;
-
+    Media(const std::string& name):name(name){}
     virtual void displayDetails() const = 0;
 };
 # 13 "/home/ghazal/CLionProjects/NextFlick/GlobalsHash.h" 2
@@ -76617,6 +76618,7 @@ public:
     MediaList findMoviesByGenreAndRating(const std::string& genre, double rating) const;
     void display() const;
     void printTop10MoviesByGenre(const std::string& genre) const;
+    void removeMediaByName(const std::string& movieName);
 };
 # 6 "/home/ghazal/CLionProjects/NextFlick/MediaHashTable.cpp" 2
 MediaHashTable::MediaHashTable() {
@@ -76699,5 +76701,22 @@ void MediaHashTable::printTop10MoviesByGenre(const std::string& genre) const {
         const Media* media = topMovies[i];
         std::cout << i + 1 << ". " << media->getname() << " (ID: " << media->getId()
                   << ", Rating: " << media->getrating() << ")\n";
+    }
+}
+
+void MediaHashTable::removeMediaByName(const std::string& movieName) {
+    for (auto& genreEntry : genreTable) {
+        auto& ratingArray = genreEntry.second;
+
+        for (size_t i = 0; i < ratingArray.size(); ++i) {
+            auto& mediaList = ratingArray[i];
+
+            for (auto it = mediaList.begin(); it != mediaList.end(); ++it) {
+                if ((*it)->getname() == movieName) {
+                    mediaList.erase(it);
+                    return;
+                }
+            }
+        }
     }
 }

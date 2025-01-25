@@ -43316,24 +43316,21 @@ namespace std __attribute__ ((__visibility__ ("default")))
        
 # 40 "/usr/include/c++/14.1.1/cctype" 3
 # 9 "/home/ghazal/CLionProjects/NextFlick/Ux.h" 2
-
-# 1 "/home/ghazal/CLionProjects/NextFlick/users.h" 1
-
-
-
-
-
-
-# 1 "/home/ghazal/CLionProjects/NextFlick/user.h" 1
+# 1 "/home/ghazal/CLionProjects/NextFlick/GlobalSparset.h" 1
 
 
 
 
 
 
+# 1 "/home/ghazal/CLionProjects/NextFlick/Media.h" 1
 
-# 1 "/home/ghazal/CLionProjects/NextFlick/Globals.h" 1
-# 9 "/home/ghazal/CLionProjects/NextFlick/Globals.h"
+
+
+
+
+
+
 # 1 "/usr/include/c++/14.1.1/vector" 1 3
 # 58 "/usr/include/c++/14.1.1/vector" 3
        
@@ -48237,16 +48234,8 @@ namespace std __attribute__ ((__visibility__ ("default")))
     }
 
 }
-# 10 "/home/ghazal/CLionProjects/NextFlick/Globals.h" 2
-# 1 "/home/ghazal/CLionProjects/NextFlick/splayTree.h" 1
+# 9 "/home/ghazal/CLionProjects/NextFlick/Media.h" 2
 
-
-
-
-
-
-# 1 "/home/ghazal/CLionProjects/NextFlick/Media.h" 1
-# 10 "/home/ghazal/CLionProjects/NextFlick/Media.h"
 # 1 "/usr/include/c++/14.1.1/memory" 1 3
 # 47 "/usr/include/c++/14.1.1/memory" 3
        
@@ -69819,6 +69808,7 @@ public:
     std::string getname()const{return name;}
     std::string getcountry()const{return country;}
     std::string getlanguage()const{return language;}
+    std::string getsummery()const{return summary;}
     double averageRating(double userRating){
         rating=(rating*numberRated)+userRating;
         ++numberRated;
@@ -69827,11 +69817,33 @@ public:
         return rating;
     }
     virtual ~Media() = default;
-
+    Media(const std::string& name):name(name){}
     virtual void displayDetails() const = 0;
 };
-# 8 "/home/ghazal/CLionProjects/NextFlick/splayTree.h" 2
+# 8 "/home/ghazal/CLionProjects/NextFlick/GlobalSparset.h" 2
+extern const int maxMedia;
+extern int countSparse;
+extern Media* sparseSetMedia[];
+# 10 "/home/ghazal/CLionProjects/NextFlick/Ux.h" 2
+# 1 "/home/ghazal/CLionProjects/NextFlick/users.h" 1
 
+
+
+
+
+
+# 1 "/home/ghazal/CLionProjects/NextFlick/user.h" 1
+
+
+
+
+
+
+
+# 1 "/home/ghazal/CLionProjects/NextFlick/Globals.h" 1
+# 10 "/home/ghazal/CLionProjects/NextFlick/Globals.h"
+# 1 "/home/ghazal/CLionProjects/NextFlick/splayTree.h" 1
+# 9 "/home/ghazal/CLionProjects/NextFlick/splayTree.h"
 # 1 "/usr/include/c++/14.1.1/unordered_map" 1 3
 # 32 "/usr/include/c++/14.1.1/unordered_map" 3
        
@@ -80450,20 +80462,9 @@ namespace std __attribute__ ((__visibility__ ("default")))
 # 70 "/usr/include/c++/14.1.1/queue" 2 3
 # 11 "/home/ghazal/CLionProjects/NextFlick/splayTree.h" 2
 
-# 1 "/home/ghazal/CLionProjects/NextFlick/GlobalSparset.h" 1
 
 
-
-
-
-
-
-
-# 8 "/home/ghazal/CLionProjects/NextFlick/GlobalSparset.h"
-extern const int maxMedia;
-extern int countSparse;
-extern Media* sparseSetMedia[];
-# 13 "/home/ghazal/CLionProjects/NextFlick/splayTree.h" 2
+# 13 "/home/ghazal/CLionProjects/NextFlick/splayTree.h"
 struct Node {
 
     int key;
@@ -80481,6 +80482,13 @@ class splayTree {
         void insert(int Id);
         Media* find(int key);
         std::string findMaxGenreWithDepthScore();
+
+        Node* getRoot() {
+            return root;
+        }
+    int depth(int id );
+        Node* delete_key(Node* root, int key);
+
 };
 # 11 "/home/ghazal/CLionProjects/NextFlick/Globals.h" 2
 # 1 "/home/ghazal/CLionProjects/NextFlick/MediaHashTable.h" 1
@@ -80517,6 +80525,7 @@ public:
     MediaList findMoviesByGenreAndRating(const std::string& genre, double rating) const;
     void display() const;
     void printTop10MoviesByGenre(const std::string& genre) const;
+    void removeMediaByName(const std::string& movieName);
 };
 # 12 "/home/ghazal/CLionProjects/NextFlick/Globals.h" 2
 # 1 "/home/ghazal/CLionProjects/NextFlick/CompressedTrie.h" 1
@@ -80563,6 +80572,8 @@ public:
     void printTree(_Node* node, const string& prefix);
     vector<Media*> search(const string& query);
     void collectResults(_Node* node, vector<Media*>& results);
+    vector<string> getAll();
+    void collect(_Node* node, string& currentKey, vector<string>& keys);
 };
 # 13 "/home/ghazal/CLionProjects/NextFlick/Globals.h" 2
 
@@ -80620,12 +80631,19 @@ public:
     users();
     void addUser(int Id, string username,string password);
     bool ExistUser(string username, string password);
+    vector<Media*> advancedSearch(const string& key);
+    int levenshteinTwoMatrixRows(const string& str1,const string& str2);
+
+    user findUser(string username, string password);
+
 };
 # 11 "/home/ghazal/CLionProjects/NextFlick/Ux.h" 2
 using namespace std;
 
 class Ux {
-    users user;
+protected:
+    users User;
+    int id=0;
 public:
     bool isValidPassword(const std::string& password);
     void SignUp();
@@ -80654,7 +80672,7 @@ public:
     Film(int id,const std::string& name, int releaseYear, int duration, const std::string& country,
          const std::string& genre, const std::string& language, double rating, const std::string& summary)
             : Media(id,name, releaseYear, country, genre, language, rating, summary), duration(duration) {}
-
+    Film(const std::string& name):Media(name){}
     void displayDetails() const override {
         std::cout << "Film: " << name << "\n"
                   << "Year: " << releaseYear << "\n"
@@ -80719,6 +80737,7 @@ public:
     void addSeries();
 };
 # 8 "/home/ghazal/CLionProjects/NextFlick/Ux.cpp" 2
+
 bool Ux::isValidPassword(const std::string& password) {
 
     if (password.length() < 8 || password.length() > 20) {
@@ -80759,7 +80778,7 @@ bool Ux::isValidPassword(const std::string& password) {
 }
 void Ux::SignUp(){
     while (true) {
-        static int id;
+
         string username;
         std::cout<<"Sign Up"<<std::endl;
         std::cout<<"Please Enter Your UserName"<<std::endl;
@@ -80768,11 +80787,11 @@ void Ux::SignUp(){
         string password;
         cin>>password;
         if (isValidPassword(password)) {
-            if (user.ExistUser(username , password)) {
+            if (User.ExistUser(username , password)) {
                 std::cout<<"Password must be unique"<<std::endl;
             }
             else {
-                user.addUser(id,username,password);
+                User.addUser(id,username,password);
                 id++;
                 break;
             }
@@ -80785,6 +80804,7 @@ void Ux::SignUp(){
 }
 
 void Ux::SignIn() {
+    int cmd;
     while (true) {
         string username;
         std::cout<<"Sign In"<<std::endl;
@@ -80793,16 +80813,10 @@ void Ux::SignIn() {
         std::cout<<"Please Enter Your Password"<<std::endl;
         string password;
         cin>>password;
-        if (user.ExistUser(username , password)) {
-            cout<<"log in\n";
-
-            break;
-        }
-        if (username == "admin" || password == "admin") {
+        if (username == "admin" && password == "admin") {
             cout<<"Admin\n";
 
             admin Admin;
-            int cmd;
             while (cmd != 0) {
                 AdminMenu();
                 cout<<"Enter Command:"<<endl;
@@ -80811,16 +80825,72 @@ void Ux::SignIn() {
                 switch (cmd) {
                     case 1:
                         Admin.addContent();
-                    break;
-
-
+                        break;
+                    case 2:
+                        break;
+                    default:
+                        cout<<"Invalid number,try again. \n";
 
                 }
 
             }
             break;
         }
-        cout<<"Error!!Please try again..."<<std::endl;
+        else if (User.ExistUser(username , password)) {
+            cout<<"log in\n";
+            user u=User.findUser(username,password);
+            while (cmd != 0) {
+                AdminMenu();
+                cout<<"Enter Command:"<<endl;
+                cin >> cmd;
+                cout<<endl;
+                switch (cmd) {
+                    case 1:
+                        for(int i=0;i<countSparse;++i){
+                            if(sparseSetMedia[i]){
+                                cout<<sparseSetMedia[i]->getname()<<"\n";
+                                cout<<"   Genre: "<<sparseSetMedia[i]->getgenre()<<"\n";
+                                cout<<"   Summery: "<<sparseSetMedia[i]->getsummery()<<"\n";
+                                cout<<"   language: "<<sparseSetMedia[i]->getlanguage()<<"\n";
+                                cout<<"   country: "<<sparseSetMedia[i]->getcountry()<<"\n";
+                                cout<<"   year: "<<sparseSetMedia[i]->getYear()<<"\n";
+                            }
+                        }
+                        break;
+                    case 2:
+
+                        break;
+                    case 3:
+                        u.userInterfaceFilter();
+                        break;
+                    case 4:
+                        break;
+                    case 5:
+                        u.addFavoriteMovies();
+                        break;
+                    case 6:
+                        u.deleteFromFavoriteMovies();
+                        break;
+                    case 7:
+                        u.showFavoriteMovies();
+                        break;
+                    case 8:
+                        u.recommend();
+                        break;
+                    case 9:
+                        u.privilege();
+                        break;
+                    case 10:
+                        break;
+                    default:
+                        cout<<"Invalid number,try again. \n";
+                }
+
+            }
+
+        }else{
+            cout<<"Error!!Please try again..."<<std::endl;
+        }
     }
 }
 void Ux::AdminMenu(){
@@ -80829,10 +80899,24 @@ void Ux::AdminMenu(){
     std::cout << "2 - Delete\n";
     std::cout << "0- Exit\n";
 }
+void userMenu(){
+    std::cout << "Menu Options:\n";
+    std::cout << "1 - Add\n";
+    std::cout << "2 - Delete\n";
+    std::cout << "0- Exit\n";
+}
 
 void Ux::Menu() {
     std::cout << "Menu Options:\n";
-    std::cout << "1 - SignUp\n";
-    std::cout << "2 - SignIn\n";
+    std::cout << "1 - show all media\n";
+    std::cout << "2 - Search\n";
+    std::cout << "3 - filter\n";
+    std::cout << "4 - advanced Search\n";
+    std::cout << "5 - add to favorites list\n";
+    std::cout << "6 - delete from favorites list\n";
+    std::cout << "7 - show favorites list\n";
+    std::cout << "8 - making suggestions\n";
+    std::cout << "9 - Rating Movies and series\n";
+    std::cout << "10 - Decision Tree\n";
     std::cout << "0- Exit\n";
 }

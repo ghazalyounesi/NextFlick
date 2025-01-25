@@ -76571,6 +76571,7 @@ public:
     std::string getname()const{return name;}
     std::string getcountry()const{return country;}
     std::string getlanguage()const{return language;}
+    std::string getsummery()const{return summary;}
     double averageRating(double userRating){
         rating=(rating*numberRated)+userRating;
         ++numberRated;
@@ -76579,7 +76580,7 @@ public:
         return rating;
     }
     virtual ~Media() = default;
-
+    Media(const std::string& name):name(name){}
     virtual void displayDetails() const = 0;
 };
 # 12 "/home/ghazal/CLionProjects/NextFlick/CompressedTrie.h" 2
@@ -76625,6 +76626,8 @@ public:
     void printTree(_Node* node, const string& prefix);
     vector<Media*> search(const string& query);
     void collectResults(_Node* node, vector<Media*>& results);
+    vector<string> getAll();
+    void collect(_Node* node, string& currentKey, vector<string>& keys);
 };
 # 2 "/home/ghazal/CLionProjects/NextFlick/CompressedTrie.cpp" 2
 
@@ -76681,8 +76684,8 @@ void CompressedTrie::insert(Media *film) {
         current->mediaMap[film->getname()] = film;
 
 
-        cout << "Inserted: " << film->getname() << endl;
-        printTree(root, "");
+
+
 }
 
 void CompressedTrie::printTree(_Node *node, const string &prefix) {
@@ -76708,6 +76711,27 @@ void CompressedTrie::collectResults(_Node* node, vector<Media*>& results) {
         collectResults(child.second, results);
     }
 }
+void CompressedTrie::collect(_Node *node, string &currentKey, vector<string> &results) {
+
+    if (node->isEnd) {
+        results.push_back(currentKey);
+    }
+    for (const auto& child : node->children) {
+        string temp = currentKey;
+        temp += child.first;
+        collect(child.second, temp, results);
+    }
+}
+
+vector<string> CompressedTrie::getAll() {
+    vector<string> result;
+    string current;
+    collect(root,current,result);
+    return result;
+}
+
+
+
 vector<Media*> CompressedTrie:: search(const string& key) {
     vector<Media*> results;
     _Node* current = root;

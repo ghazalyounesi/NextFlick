@@ -69795,6 +69795,7 @@ public:
     std::string getname()const{return name;}
     std::string getcountry()const{return country;}
     std::string getlanguage()const{return language;}
+    std::string getsummery()const{return summary;}
     double averageRating(double userRating){
         rating=(rating*numberRated)+userRating;
         ++numberRated;
@@ -69803,7 +69804,7 @@ public:
         return rating;
     }
     virtual ~Media() = default;
-
+    Media(const std::string& name):name(name){}
     virtual void displayDetails() const = 0;
 };
 # 8 "/home/ghazal/CLionProjects/NextFlick/splayTree.h" 2
@@ -80457,6 +80458,13 @@ class splayTree {
         void insert(int Id);
         Media* find(int key);
         std::string findMaxGenreWithDepthScore();
+
+        Node* getRoot() {
+            return root;
+        }
+    int depth(int id );
+        Node* delete_key(Node* root, int key);
+
 };
 # 6 "/home/ghazal/CLionProjects/NextFlick/splayTree.cpp" 2
 Node* splayTree::newNode(int id) {
@@ -80548,7 +80556,9 @@ Media* splayTree::find(int key) {
     root = splay(root, key);
 
     if (root != nullptr && root->key == key) {
-        return sparseSetMedia[key];
+        if(sparseSetMedia[key]){
+            return sparseSetMedia[key];
+        }
     }
 
     return nullptr;
@@ -80588,4 +80598,53 @@ std::string splayTree::findMaxGenreWithDepthScore() {
     }
 
     return maxGenre.empty() ? "No genres available" : maxGenre;
+}
+
+int splayTree::depth(int id) {
+    int d = 0;
+    Node* temp = root;
+
+    while (temp != nullptr) {
+        if (id == temp->key) {
+            return d;
+        }
+
+        if (id < temp->key) {
+            temp = temp->left;
+        } else {
+            temp = temp->right;
+        }
+        d++;
+    }
+    return -1;
+}
+
+
+Node* splayTree:: delete_key(struct Node* root, int key)
+{
+    Node* temp;
+    if (!root)
+        return 
+# 163 "/home/ghazal/CLionProjects/NextFlick/splayTree.cpp" 3 4
+              __null
+# 163 "/home/ghazal/CLionProjects/NextFlick/splayTree.cpp"
+                  ;
+
+    root = splay(root, key);
+
+    if (key != root->key)
+        return root;
+
+    if (!root->left) {
+        temp = root;
+        root = root->right;
+    }
+    else {
+        temp = root;
+        root = splay(root->left, key);
+        root->right = temp->right;
+    }
+    free(temp);
+
+    return root;
 }

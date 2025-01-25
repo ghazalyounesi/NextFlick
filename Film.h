@@ -11,10 +11,10 @@ private:
     int duration;
 
 public:
-    Film(const std::string& name, int releaseYear, int duration, const std::string& country,
+    Film(int id,const std::string& name, int releaseYear, int duration, const std::string& country,
          const std::string& genre, const std::string& language, double rating, const std::string& summary)
-            : Media(name, releaseYear, country, genre, language, rating, summary), duration(duration) {}
-
+            : Media(id,name, releaseYear, country, genre, language, rating, summary), duration(duration) {}
+    Film(const std::string& name):Media(name){}
     void displayDetails() const override {
         std::cout << "Film: " << name << "\n"
                   << "Year: " << releaseYear << "\n"
