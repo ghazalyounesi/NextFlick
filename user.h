@@ -22,4 +22,6 @@ public:
     string getUsername(){return username;}
     string getPassword(){return password;}
 };
+
+
 #endif //NEXTFLICK_USER_H

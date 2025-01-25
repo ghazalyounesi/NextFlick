@@ -28,7 +28,7 @@ public:
     std::string getgenre()const{return genre;}
     std::string getname()const{return name;}
     virtual ~Media() = default;
-
+    Media(const std::string& name):name(name){} //debug
     virtual void displayDetails() const = 0;
 };
 
