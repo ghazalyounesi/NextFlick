@@ -8,11 +8,12 @@
 
 class MediaHashTable {
 private:
+
+
+public:
     GenreTable genreTable;
 
     int ratingIndex(double rating) const;
-
-public:
     MediaHashTable();
 
     void addMedia(Media* media);

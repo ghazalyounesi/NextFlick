@@ -17,4 +17,6 @@ add_executable(NextFlick main.cpp
         Globals.h
         MediaHashTable.cpp
         MediaHashTable.h
-        GlobalsHash.h)
+        GlobalsHash.h
+        user.cpp
+        GlobalSparset.h)

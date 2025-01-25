@@ -7,6 +7,7 @@
 #include "user.h"
 #include <vector>
 #include "Globals.h"
+#include "GlobalSparset.h"
 #include "GlobalsHash.h"
 class users {
 protected:

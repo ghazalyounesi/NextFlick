@@ -9,8 +9,9 @@
 #include <unordered_map>
 #include <queue>
 #include <string>
+#include "GlobalSparset.h"
 struct Node {
-    Media* media;
+    //Media* media;
     int key;
     Node *left, *right;
 };
@@ -19,11 +20,11 @@ class splayTree {
         Node* root;
     public:
         splayTree () : root(nullptr) {}
-        Node* newNode( Media* media);
+        Node* newNode( int Id);
         Node* rightRotate(Node* x);
         Node* leftRotate(Node* x);
         Node* splay(Node* root, int key);
-        void insert(Media* media);
+        void insert(int Id);
         Media* find(int key);
         std::string findMaxGenreWithDepthScore();
 };
