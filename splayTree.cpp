@@ -3,10 +3,10 @@
 //
 
 #include "splayTree.h"
-Node* splayTree::newNode( Media* media) {
+Node* splayTree::newNode(int id) {
     Node* node = new Node();
-    node->key = media->getId();
-    node->media = media;
+    node->key = id;
+    //node->media = media;
     node->left = node->right = nullptr;
     return node;
 }
@@ -61,10 +61,10 @@ Node* splayTree::splay(Node* root, int key) {
     }
 }
 
-void splayTree::insert(Media* media) {
-    int key=media->getId();
+void splayTree::insert(int Id) {
+    int key=Id;
     if (root == nullptr) {
-        root = newNode(media);
+        root = newNode(Id);
         return;
     }
 
@@ -73,7 +73,7 @@ void splayTree::insert(Media* media) {
     if (root->key == key)
         return;
 
-    Node* node = newNode(media);
+    Node* node = newNode(Id);
 
     if (root->key > key) {
         node->right = root;
@@ -92,7 +92,9 @@ Media* splayTree::find(int key) {
     root = splay(root, key);
 
     if (root != nullptr && root->key == key) {
-        return root->media;
+        if(sparseSetMedia[key]){
+            return sparseSetMedia[key];
+        }
     }
 
     return nullptr;
@@ -115,8 +117,8 @@ std::string splayTree::findMaxGenreWithDepthScore() {
 
         if (score <= 0) break;
 
-        if (current && current->media) {
-            const std::string& genre = current->media->getgenre();
+        if (current && sparseSetMedia[current->key]) {
+            const std::string& genre = sparseSetMedia[current->key]->getgenre();
             genreScores[genre] += score;
 
             if (genreScores[genre] > maxValue) {
@@ -133,6 +135,7 @@ std::string splayTree::findMaxGenreWithDepthScore() {
 
     return maxGenre.empty() ? "No genres available" : maxGenre;
 }
+
 int splayTree::depth(int id) {
     int d = 0;
     Node* temp = root;
@@ -150,4 +153,30 @@ int splayTree::depth(int id) {
         d++;
     }
     return -1;
+}
+
+
+Node* splayTree:: delete_key(struct Node* root, int key)
+{
+    Node* temp;
+    if (!root)
+        return NULL;
+
+    root = splay(root, key);
+
+    if (key != root->key)
+        return root;
+
+    if (!root->left) {
+        temp = root;
+        root = root->right;
+    }
+    else {
+        temp = root;
+        root = splay(root->left, key);
+        root->right = temp->right;
+    }
+    free(temp);
+
+    return root;
 }

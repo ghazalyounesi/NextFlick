@@ -5,13 +5,20 @@
 #include "Globals.h"
 #include "admin.h"
 #include "user.h"
+#include "GlobalSparset.h"
 #include "Ux.h"
 #include  "CompressedTrie.h"
 splayTree GelobalSplayTree;
 MediaHashTable HashGenreRating;
+const int maxMedia = 100;
+Media* sparseSetMedia[maxMedia] = {nullptr};
+std::unordered_map<std::string, std::vector<int>> languageHashTable;
+std::unordered_map<std::string, std::vector<int>> countryHashTable;
+int countSparse=0;
 CompressedTrie compressedtrie;
+
 int main() {
-  int cmd;
+    int cmd;
     Ux ux;
     while (cmd != 0) {
         ux.Menu();

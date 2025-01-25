@@ -7,6 +7,7 @@
 #include "user.h"
 #include <vector>
 #include "Globals.h"
+#include "GlobalSparset.h"
 #include "GlobalsHash.h"
 
 class users {
@@ -19,6 +20,9 @@ public:
     bool ExistUser(string username, string password);
     vector<Media*> advancedSearch(const string& key);
     int levenshteinTwoMatrixRows(const string& str1,const string& str2);
+
+    user findUser(string username, string password);
+
 };
 
 
