@@ -10,5 +10,5 @@
 #include "CompressedTrie.h"
 extern splayTree GelobalSplayTree;
 extern MediaHashTable HashGenreRating;
-extern CompressedTrie CompressedTrie;
+extern CompressedTrie compressedtrie;
 #endif //NEXTFLICK_GLOBALS_H

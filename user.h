@@ -19,5 +19,7 @@ public:
         string MaxGenre= GelobalSplayTree.findMaxGenreWithDepthScore();
         HashGenreRating.printTop10MoviesByGenre(MaxGenre);
     }
+    string getUsername(){return username;}
+    string getPassword(){return password;}
 };
 #endif //NEXTFLICK_USER_H

@@ -49,7 +49,7 @@ void admin::addMovie() {
     Film* movie = new Film(idMedia,name, releaseYear, duration, country, genre, language, rating, summary);
     HashGenreRating.addMedia(movie);
     GelobalSplayTree.insert(movie);
-    CompressedTrie.insert(movie);
+    compressedtrie.insert(movie);
     cout << "\nMovie added successfully!" << endl;
 
 }
@@ -87,5 +87,6 @@ void admin::addSeries() {
     Series* series = new Series(idMedia,name, releaseYear, episodeDuration, country, genre, language, rating, summary, seasons, episodes);
     HashGenreRating.addMedia(series);
     GelobalSplayTree.insert(series);
+    compressedtrie.insert(series);
     cout << "\nSeries added successfully!" << endl;
 }
