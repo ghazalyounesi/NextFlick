@@ -7,6 +7,8 @@
 
 #include "splayTree.h"
 #include "MediaHashTable.h"
+#include "CompressedTrie.h"
 extern splayTree GelobalSplayTree;
 extern MediaHashTable HashGenreRating;
+extern CompressedTrie CompressedTrie;
 #endif //NEXTFLICK_GLOBALS_H

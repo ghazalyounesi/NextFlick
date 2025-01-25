@@ -49,6 +49,7 @@ void admin::addMovie() {
     Film* movie = new Film(idMedia,name, releaseYear, duration, country, genre, language, rating, summary);
     HashGenreRating.addMedia(movie);
     GelobalSplayTree.insert(movie);
+    CompressedTrie.insert(movie);
     cout << "\nMovie added successfully!" << endl;
 
 }
