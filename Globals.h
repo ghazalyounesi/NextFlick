@@ -12,7 +12,6 @@
 #include "Media.h"
 
 
-
 extern splayTree GelobalSplayTree;
 extern MediaHashTable HashGenreRating;
 extern std::unordered_map<std::string, std::vector<int>> languageHashTable;
