@@ -8,12 +8,13 @@
 #include "Film.h"
 #include "Series.h"
 #include "Globals.h"
+#include "GlobalSparset.h"
 using namespace std;
 
 class admin {
 protected:
     int id;
-    int idMedia=20;
+    int idMedia=0;
     string username;
     string password;
 public:

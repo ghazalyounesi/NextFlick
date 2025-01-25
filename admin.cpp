@@ -48,9 +48,14 @@ void admin::addMovie() {
     rating= roundrating(rating);
     Film* movie = new Film(idMedia,name, releaseYear, duration, country, genre, language, rating, summary);
     HashGenreRating.addMedia(movie);
-    GelobalSplayTree.insert(movie);
+    GelobalSplayTree.insert(idMedia);
+    sparseSetMedia[idMedia]=movie;
+    languageHashTable[language].push_back(idMedia);
+    countryHashTable[country].push_back(idMedia);
     compressedtrie.insert(movie);
     cout << "\nMovie added successfully!" << endl;
+    idMedia++;
+    countSparse++;
 
 }
 
@@ -86,7 +91,12 @@ void admin::addSeries() {
     rating= roundrating(rating);
     Series* series = new Series(idMedia,name, releaseYear, episodeDuration, country, genre, language, rating, summary, seasons, episodes);
     HashGenreRating.addMedia(series);
-    GelobalSplayTree.insert(series);
+    GelobalSplayTree.insert(idMedia);
+    sparseSetMedia[idMedia]=series;
+    languageHashTable[language].push_back(idMedia);
+    countryHashTable[country].push_back(idMedia);
     compressedtrie.insert(series);
     cout << "\nSeries added successfully!" << endl;
+    idMedia++;
+    countSparse++;
 }

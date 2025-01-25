@@ -6,12 +6,14 @@
 #define UX_H
 #include<iostream>
 #include <cctype>
-
+#include "GlobalSparset.h"
 #include "users.h"
 using namespace std;
 #include "users.h"
 class Ux {
-    users user;
+protected:
+    users User;
+    int id=0;
 public:
     bool isValidPassword(const std::string& password);
     void SignUp();

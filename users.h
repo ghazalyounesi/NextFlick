@@ -7,6 +7,7 @@
 #include "user.h"
 #include <vector>
 #include "Globals.h"
+#include "GlobalSparset.h"
 #include "GlobalsHash.h"
 
 class users {
@@ -17,6 +18,7 @@ public:
     users();
     void addUser(int Id, string username,string password);
     bool ExistUser(string username, string password);
+    user findUser(string username, string password);
 };
 
 
