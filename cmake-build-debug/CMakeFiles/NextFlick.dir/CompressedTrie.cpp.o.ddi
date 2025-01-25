@@ -1,0 +1,11 @@
+{
+"rules": [
+{
+"primary-output": "CMakeFiles/NextFlick.dir/CompressedTrie.cpp.o",
+"requires": [
+]
+}
+],
+"version": 0,
+"revision": 0
+}
