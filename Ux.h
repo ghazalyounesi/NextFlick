@@ -20,6 +20,7 @@ public:
     void SignIn();
     void Menu();
     void AdminMenu();
+    void userMenu();
 
 };
 

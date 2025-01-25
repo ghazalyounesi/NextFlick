@@ -18,6 +18,7 @@ int countSparse=0;
 CompressedTrie compressedtrie;
 
 int main() {
+    /*
     admin a(0,"h","h");
     a.addContent();
     a.addContent();
@@ -29,16 +30,16 @@ int main() {
     w.userInterfaceFilter();
     w.userInterfaceFilter();
     w.userInterfaceFilter();
+    */
 
-
-    int cmd;
+    int cm;
     Ux ux;
-    while (cmd != 0) {
+    while (cm != 0) {
         ux.Menu();
         cout<<"Enter Command:"<<endl;
-        cin >> cmd;
+        cin >> cm;
         cout<<endl;
-        switch (cmd) {
+        switch (cm) {
             case 1:
                 ux.SignUp();
             break;
