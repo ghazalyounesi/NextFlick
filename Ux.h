@@ -17,9 +17,10 @@ public:
     void SignUp();
     void SignIn();
     void Menu();
-
+    void AdminMenu();
 
 };
+
 
 
 

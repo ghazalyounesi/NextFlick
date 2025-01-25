@@ -34,5 +34,8 @@ public:
     void merge(std::vector<int>& vec, int left, int mid, int right);
     void mergeSort(std::vector<int>& vec, int left, int right);
     void showFavoriteMovies();
+    string getUsername(){return username;}
+    string getPassword(){return password;}
+
 };
 #endif //NEXTFLICK_USER_H

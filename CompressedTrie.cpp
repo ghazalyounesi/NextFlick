@@ -1,11 +1,7 @@
-//
-// Created by ZBook Fury on 24/01/2025.
-//
-
 #include "CompressedTrie.h"
 
 void CompressedTrie::insert(Media *film) {
-    Node* current = root;
+    _Node* current = root;
         string remainingKey = film->getname();
 
         while (!remainingKey.empty()) {
@@ -22,10 +18,10 @@ void CompressedTrie::insert(Media *film) {
                         current = it->second;
                         remainingKey = substring(remainingKey, commonPrefixLength);
                     } else {
-                        Node* newNode = new Node();
+                        _Node* newNode = new _Node();
                         string remainingEdge = substring(edgeLabel, commonPrefixLength);
 
-                        Node* oldChild = it->second;
+                        _Node* oldChild = it->second;
                         current->children.erase(it);
                         current->children[edgeLabel.substr(0, commonPrefixLength)] = newNode;
 
@@ -33,7 +29,7 @@ void CompressedTrie::insert(Media *film) {
 
                         if (remainingKey.size() > commonPrefixLength) {
                             string remainingKeyPart = substring(remainingKey, commonPrefixLength);
-                            newNode->children[remainingKeyPart] = new Node();
+                            newNode->children[remainingKeyPart] = new _Node();
                             newNode->children[remainingKeyPart]->isEnd = true;
                             newNode->children[remainingKeyPart]->mediaMap[film->getname()] = film;
                         } else {
@@ -46,7 +42,7 @@ void CompressedTrie::insert(Media *film) {
             }
 
             if (!isEdgeFound) {
-                current->children[remainingKey] = new Node();
+                current->children[remainingKey] = new _Node();
                 current->children[remainingKey]->isEnd = true;
                 current->children[remainingKey]->mediaMap[film->getname()] = film;
                 return;
@@ -61,7 +57,7 @@ void CompressedTrie::insert(Media *film) {
         printTree(root, "");
 }
 
-void CompressedTrie::printTree(Node *node, const string &prefix) {
+void CompressedTrie::printTree(_Node *node, const string &prefix) {
     if (!node) return;
 
     for (const auto& child : node->children) {
@@ -72,4 +68,55 @@ void CompressedTrie::printTree(Node *node, const string &prefix) {
         cout << endl;
         printTree(child.second, prefix + "  ");
     }
+}
+void CompressedTrie::collectResults(_Node* node, vector<Media*>& results) {
+    if (node->isEnd) {
+        for (const auto& mediaPair : node->mediaMap) {
+            results.push_back(mediaPair.second);
+        }
+    }
+
+    for (const auto& child : node->children) {
+        collectResults(child.second, results);
+    }
+}
+vector<Media*> CompressedTrie:: search(const string& key) {
+    vector<Media*> results;
+    _Node* current = root;
+    string remainingKey = key;
+
+    while (!remainingKey.empty()) {
+        bool isEdgeFound = false;
+
+
+        for (const auto& it : current->children) {
+            string edgeLabel = it.first;
+            int commonPrefixLength = findCommonPrefix(remainingKey, edgeLabel);
+
+            if (commonPrefixLength > 0) {
+                isEdgeFound = true;
+
+                if (commonPrefixLength == edgeLabel.size()) {
+                    current = it.second;
+                    remainingKey = substring(remainingKey, commonPrefixLength);
+
+
+                    if (remainingKey.empty()) {
+                        collectResults(current, results);
+                    }
+                } else {
+                    collectResults(it.second, results);
+                    remainingKey.clear();
+                    break;
+                }
+                break;
+            }
+        }
+
+        if (!isEdgeFound) {
+            break;
+        }
+    }
+
+    return results;
 }

@@ -4,6 +4,7 @@
 
 #include "Ux.h"
 #include "users.h"
+#include "admin.h"
 bool Ux::isValidPassword(const std::string& password) {
     //cout<<password.length();
     if (password.length() < 8 || password.length() > 20) {
@@ -86,10 +87,33 @@ void Ux::SignIn() {
         if (username == "admin" || password == "admin") {
             cout<<"Admin\n";
             //adminpannel
+            admin Admin;
+            int cmd;
+            while (cmd != 0) {
+                AdminMenu();
+                cout<<"Enter Command:"<<endl;
+                cin >> cmd;
+                cout<<endl;
+                switch (cmd) {
+                    case 1:
+                        Admin.addContent();
+                    break;
+                    /*case 2:
+
+                    break;*/
+                }
+
+            }
             break;
         }
         cout<<"Error!!Please try again..."<<std::endl;
     }
+}
+void Ux::AdminMenu(){
+    std::cout << "Menu Options:\n";
+    std::cout << "1 - Add\n";
+    std::cout << "2 - Delete\n";
+    std::cout << "0- Exit\n";
 }
 
 void Ux::Menu() {

@@ -52,6 +52,7 @@ void admin::addMovie() {
     sparseSetMedia[idMedia]=movie;
     languageHashTable[language].push_back(idMedia);
     countryHashTable[country].push_back(idMedia);
+    compressedtrie.insert(movie);
     cout << "\nMovie added successfully!" << endl;
     idMedia++;
     countSparse++;
@@ -94,6 +95,7 @@ void admin::addSeries() {
     sparseSetMedia[idMedia]=series;
     languageHashTable[language].push_back(idMedia);
     countryHashTable[country].push_back(idMedia);
+    compressedtrie.insert(series);
     cout << "\nSeries added successfully!" << endl;
     idMedia++;
     countSparse++;

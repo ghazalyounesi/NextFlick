@@ -19,6 +19,7 @@ protected:
     string password;
 public:
     admin(int Id, string Username, string Password): id(Id),username(Username),password(Password){}
+    admin(){}
     double roundrating(double rating)const;
     void addContent();
     void addMovie();

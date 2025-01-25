@@ -1,7 +1,6 @@
 //
 // Created by ZBook Fury on 24/01/2025.
 //
-
 #ifndef COMPRESSEDTRIE_H
 #define COMPRESSEDTRIE_H
 
@@ -12,19 +11,19 @@
 #include "Media.h"
 using namespace std;
 
-class Node {
+class _Node {
 public:
-    unordered_map<string, Node*> children;
+    unordered_map<string, _Node*> children;
     unordered_map<string, Media*> mediaMap;
     bool isEnd;
 
-    Node() : isEnd(false) {}
+    _Node() : isEnd(false) {}
 };
 
 
 class CompressedTrie {
 private:
-    Node* root;
+    _Node* root;
 
 
     string substring(const string& str, int index) {
@@ -42,7 +41,7 @@ private:
 public:
     // Constructor for the trie
     CompressedTrie() {
-        root = new Node();
+        root = new _Node();
     }
 
     /* ~CompressedTrie() {
@@ -57,12 +56,13 @@ public:
         delete node;
     }*/
 
-    Node* getRoot() {
+    _Node* getRoot() {
         return root;
     }
     void insert(Media* film);
-    void printTree(Node* node, const string& prefix);
-
+    void printTree(_Node* node, const string& prefix);
+    vector<Media*> search(const string& query);
+    void collectResults(_Node* node, vector<Media*>& results);
 };
 
 #endif //COMPRESSEDTRIE_H

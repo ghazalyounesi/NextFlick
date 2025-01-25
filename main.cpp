@@ -6,6 +6,8 @@
 #include "admin.h"
 #include "user.h"
 #include "GlobalSparset.h"
+#include "Ux.h"
+#include  "CompressedTrie.h"
 splayTree GelobalSplayTree;
 MediaHashTable HashGenreRating;
 const int maxMedia = 100;
@@ -13,6 +15,8 @@ Media* sparseSetMedia[maxMedia] = {nullptr};
 std::unordered_map<std::string, std::vector<int>> languageHashTable;
 std::unordered_map<std::string, std::vector<int>> countryHashTable;
 int countSparse=0;
+CompressedTrie compressedtrie;
+
 int main() {
     admin a(0,"h","h");
     a.addContent();
@@ -26,6 +30,24 @@ int main() {
     w.userInterfaceFilter();
     w.userInterfaceFilter();
 
+
+    int cmd;
+    Ux ux;
+    while (cmd != 0) {
+        ux.Menu();
+        cout<<"Enter Command:"<<endl;
+        cin >> cmd;
+        cout<<endl;
+        switch (cmd) {
+            case 1:
+                ux.SignUp();
+            break;
+            case 2:
+                ux.SignIn();
+            break;
+        }
+    }
+    
     return 0;
 }
 
