@@ -12,6 +12,7 @@ MediaHashTable HashGenreRating;
 CompressedTrie compressedtrie;
 int main() {
 
+
     int cmd;
     Ux ux;
     while (cmd != 0) {
@@ -27,9 +28,8 @@ int main() {
                 ux.SignIn();
             break;
         }
-
     }
-
+    
     return 0;
 }
 
