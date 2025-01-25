@@ -20,6 +20,7 @@ public:
     MediaList findMoviesByGenreAndRating(const std::string& genre, double rating) const;
     void display() const;
     void printTop10MoviesByGenre(const std::string& genre) const;
+    void removeMediaByName(const std::string& movieName);
 };
 
 

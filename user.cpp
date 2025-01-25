@@ -11,12 +11,16 @@ vector<pair<int,int>> user::SortYear(){
     int N=countSparse;
     int maxYear = 0;
     for (int i = 0; i < N; i++) {
-        maxYear = max(maxYear, sparseSetMedia[i]->getYear());
+        if(sparseSetMedia[i]!= nullptr){
+            maxYear = max(maxYear, sparseSetMedia[i]->getYear());
+        }
     }
     vector<int> countArray(maxYear + 1, 0);
 
     for (int i = 0; i < N; i++) {
-        countArray[sparseSetMedia[i]->getYear()]++;
+        if(sparseSetMedia[i]!= nullptr){
+            countArray[sparseSetMedia[i]->getYear()]++;
+        }
     }
 
     for (int i = maxYear - 1; i >= 0; i--) {
@@ -25,9 +29,11 @@ vector<pair<int,int>> user::SortYear(){
 
     vector<pair<int,int>> outputArray(N);
     for (int i = 0; i < N; i++) {
-        outputArray[countArray[sparseSetMedia[i]->getYear()] - 1].second = sparseSetMedia[i]->getId();
-        outputArray[countArray[sparseSetMedia[i]->getYear()] - 1].first = sparseSetMedia[i]->getYear();
-        countArray[sparseSetMedia[i]->getYear()]--;
+        if(sparseSetMedia[i]!= nullptr){
+            outputArray[countArray[sparseSetMedia[i]->getYear()] - 1].second = sparseSetMedia[i]->getId();
+            outputArray[countArray[sparseSetMedia[i]->getYear()] - 1].first = sparseSetMedia[i]->getYear();
+            countArray[sparseSetMedia[i]->getYear()]--;
+        }
     }
 
     return outputArray;
@@ -39,8 +45,10 @@ vector<pair<float, int>> user::SortScore() {
     int maxScore = 0;
     vector<int> intScores(N);
     for (int i = 0; i < N; i++) {
-        intScores[i] = static_cast<int>(sparseSetMedia[i]->getrating() * 10);
-        maxScore = max(maxScore, intScores[i]);
+        if(sparseSetMedia[i]!= nullptr){
+            intScores[i] = static_cast<int>(sparseSetMedia[i]->getrating() * 10);
+            maxScore = max(maxScore, intScores[i]);
+        }
     }
 
     vector<int> countArray(maxScore + 1, 0);
@@ -54,10 +62,12 @@ vector<pair<float, int>> user::SortScore() {
 
     vector<pair<float, int>> outputArray(N);
     for (int i = 0; i < N; i++) {
-        int intScore = intScores[i];
-        outputArray[countArray[intScore] - 1].first = intScore / 10.0f;
-        outputArray[countArray[intScore] - 1].second = sparseSetMedia[i]->getId();
-        countArray[intScore]--;
+        if(sparseSetMedia[i]!= nullptr){
+            int intScore = intScores[i];
+            outputArray[countArray[intScore] - 1].first = intScore / 10.0f;
+            outputArray[countArray[intScore] - 1].second = sparseSetMedia[i]->getId();
+            countArray[intScore]--;
+        }
     }
 
     return outputArray;
@@ -212,7 +222,7 @@ void user::privilege() {
     cout<<"Enter the score you give to the movie: ";
     cin>>rating;
     for(int i=0;i<countSparse;++i){
-        if(sparseSetMedia[i]->getname()==name){
+        if(sparseSetMedia[favoriteMovies[i]]&&sparseSetMedia[i]->getname()==name){
             sparseSetMedia[i]->averageRating(rating);
             cout<<"Done successfully. \n";
             return;
@@ -228,7 +238,7 @@ void user::addFavoriteMovies() {
     cin>>name;
     cout<<"\n";
     for(int i=0;i<countSparse;++i){
-        if(sparseSetMedia[i]->getname()==name){
+        if(sparseSetMedia[favoriteMovies[i]]&&sparseSetMedia[i]->getname()==name){
             favoriteMovies.push_back(i);
             cout<<"Done successfully. \n";
             return;
@@ -244,7 +254,7 @@ void user::deleteFromFavoriteMovies() {
     cin>>name;
     cout<<"\n";
     for(int i=0;i<favoriteMovies.size();++i){
-        if(sparseSetMedia[favoriteMovies[i]]->getname()==name){
+        if(sparseSetMedia[favoriteMovies[i]]&&sparseSetMedia[favoriteMovies[i]]->getname()==name){
             favoriteMovies.erase(favoriteMovies.begin() + i);
             cout << "Movie removed successfully.\n";
             return;
@@ -301,6 +311,9 @@ void user::mergeSort(std::vector<int>& vec, int left, int right) {
 void user::showFavoriteMovies() {
     mergeSort(favoriteMovies, 0, favoriteMovies.size() - 1);
     for(int i=0;i<favoriteMovies.size();++i){
-        cout<<sparseSetMedia[favoriteMovies[i]]->getname()<<" ("<<sparseSetMedia[favoriteMovies[i]]->getYear()<<") score: "<<sparseSetMedia[favoriteMovies[i]]->getrating()<<"\n";
+        if(sparseSetMedia[favoriteMovies[i]]){
+            cout<<sparseSetMedia[favoriteMovies[i]]->getname()<<" ("<<sparseSetMedia[favoriteMovies[i]]->getYear()<<") score: "<<sparseSetMedia[favoriteMovies[i]]->getrating()<<"\n";
+
+        }
     }
 }

@@ -85,3 +85,20 @@ void MediaHashTable::printTop10MoviesByGenre(const std::string& genre) const {
                   << ", Rating: " << media->getrating() << ")\n";
     }
 }
+
+void MediaHashTable::removeMediaByName(const std::string& movieName) {
+    for (auto& genreEntry : genreTable) {
+        auto& ratingArray = genreEntry.second;
+
+        for (size_t i = 0; i < ratingArray.size(); ++i) {
+            auto& mediaList = ratingArray[i];
+
+            for (auto it = mediaList.begin(); it != mediaList.end(); ++it) {
+                if ((*it)->getname() == movieName) {
+                    mediaList.erase(it);
+                    return;
+                }
+            }
+        }
+    }
+}

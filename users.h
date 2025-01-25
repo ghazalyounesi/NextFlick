@@ -18,6 +18,7 @@ public:
     users();
     void addUser(int Id, string username,string password);
     bool ExistUser(string username, string password);
+    user findUser(string username, string password);
 };
 
 

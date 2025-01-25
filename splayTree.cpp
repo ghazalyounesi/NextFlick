@@ -92,7 +92,9 @@ Media* splayTree::find(int key) {
     root = splay(root, key);
 
     if (root != nullptr && root->key == key) {
-        return sparseSetMedia[key];
+        if(sparseSetMedia[key]){
+            return sparseSetMedia[key];
+        }
     }
 
     return nullptr;
@@ -132,4 +134,29 @@ std::string splayTree::findMaxGenreWithDepthScore() {
     }
 
     return maxGenre.empty() ? "No genres available" : maxGenre;
+}
+
+Node* splayTree:: delete_key(struct Node* root, int key)
+{
+    Node* temp;
+    if (!root)
+        return NULL;
+
+    root = splay(root, key);
+
+    if (key != root->key)
+        return root;
+
+    if (!root->left) {
+        temp = root;
+        root = root->right;
+    }
+    else {
+        temp = root;
+        root = splay(root->left, key);
+        root->right = temp->right;
+    }
+    free(temp);
+
+    return root;
 }

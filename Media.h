@@ -32,6 +32,7 @@ public:
     std::string getname()const{return name;}
     std::string getcountry()const{return country;}
     std::string getlanguage()const{return language;}
+    std::string getsummery()const{return summary;}
     double averageRating(double userRating){
         rating=(rating*numberRated)+userRating;
         ++numberRated;

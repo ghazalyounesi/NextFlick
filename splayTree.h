@@ -27,6 +27,7 @@ class splayTree {
         void insert(int Id);
         Media* find(int key);
         std::string findMaxGenreWithDepthScore();
+        Node* delete_key(Node* root, int key);
 };
 
 
