@@ -1,0 +1,8 @@
+//
+// Created by ghazal on 1/25/25.
+//
+
+#ifndef NEXTFLICK_GLOBALSPARSET_H
+#define NEXTFLICK_GLOBALSPARSET_H
+
+#endif //NEXTFLICK_GLOBALSPARSET_H
