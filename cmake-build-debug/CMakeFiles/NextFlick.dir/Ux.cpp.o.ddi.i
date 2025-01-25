@@ -80650,6 +80650,7 @@ public:
     void SignIn();
     void Menu();
     void AdminMenu();
+    void userMenu();
 
 };
 # 6 "/home/ghazal/CLionProjects/NextFlick/Ux.cpp" 2
@@ -80829,7 +80830,9 @@ void Ux::SignIn() {
                     case 2:
                         break;
                     default:
-                        cout<<"Invalid number,try again. \n";
+                        if(cmd!=0){
+                            cout<<"Invalid number,try again. \n";
+                        }
 
                 }
 
@@ -80840,7 +80843,7 @@ void Ux::SignIn() {
             cout<<"log in\n";
             user u=User.findUser(username,password);
             while (cmd != 0) {
-                AdminMenu();
+                userMenu();
                 cout<<"Enter Command:"<<endl;
                 cin >> cmd;
                 cout<<endl;
@@ -80883,11 +80886,14 @@ void Ux::SignIn() {
                     case 10:
                         break;
                     default:
-                        cout<<"Invalid number,try again. \n";
+                        if(cmd !=0){
+                            cout<<"Invalid number,try again. \n";
+                        }
+
                 }
 
             }
-
+          break;
         }else{
             cout<<"Error!!Please try again..."<<std::endl;
         }
@@ -80899,14 +80905,14 @@ void Ux::AdminMenu(){
     std::cout << "2 - Delete\n";
     std::cout << "0- Exit\n";
 }
-void userMenu(){
+void Ux::Menu(){
     std::cout << "Menu Options:\n";
-    std::cout << "1 - Add\n";
-    std::cout << "2 - Delete\n";
+    std::cout << "1 - sign up\n";
+    std::cout << "2 - sign in\n";
     std::cout << "0- Exit\n";
 }
 
-void Ux::Menu() {
+void Ux::userMenu() {
     std::cout << "Menu Options:\n";
     std::cout << "1 - show all media\n";
     std::cout << "2 - Search\n";
