@@ -1,4 +1,0 @@
-/home/ghazal/Downloads/clion-2024.3/bin/cmake/linux/x64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/home/ghazal/Downloads/clion-2024.3/bin/ninja/linux/x64/ninja -G Ninja -S /home/ghazal/CLionProjects/NextFlick -B /home/ghazal/CLionProjects/NextFlick/cmake-build-debug
--- Configuring done (0.5s)
--- Generating done (0.1s)
--- Build files have been written to: /home/ghazal/CLionProjects/NextFlick/cmake-build-debug
