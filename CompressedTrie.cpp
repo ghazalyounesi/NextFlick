@@ -53,8 +53,8 @@ void CompressedTrie::insert(Media *film) {
         current->mediaMap[film->getname()] = film;
 
         // Debug: Print the tree structure after inserting each film
-        cout << "Inserted: " << film->getname() << endl;
-        printTree(root, "");
+        /*cout << "Inserted: " << film->getname() << endl;
+        printTree(root, "");*/
 }
 
 void CompressedTrie::printTree(_Node *node, const string &prefix) {
@@ -80,6 +80,27 @@ void CompressedTrie::collectResults(_Node* node, vector<Media*>& results) {
         collectResults(child.second, results);
     }
 }
+void CompressedTrie::collect(_Node *node, string &currentKey, vector<string> &results) {
+
+    if (node->isEnd) {
+        results.push_back(currentKey);
+    }
+    for (const auto& child : node->children) {
+        string temp = currentKey;
+        temp += child.first;
+        collect(child.second, temp, results);
+    }
+}
+
+vector<string> CompressedTrie::getAll() {
+    vector<string> result;
+    string current;
+    collect(root,current,result);
+    return result;
+}
+
+
+
 vector<Media*> CompressedTrie:: search(const string& key) {
     vector<Media*> results;
     _Node* current = root;

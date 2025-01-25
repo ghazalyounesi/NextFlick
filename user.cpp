@@ -2,6 +2,7 @@
 // Created by ghazal on 1/24/25.
 //
 #include "user.h"
+
 void user::recommend() {
     string MaxGenre= GelobalSplayTree.findMaxGenreWithDepthScore();
     HashGenreRating.printTop10MoviesByGenre(MaxGenre);
@@ -317,3 +318,4 @@ void user::showFavoriteMovies() {
         }
     }
 }
+

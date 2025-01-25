@@ -41,7 +41,7 @@ public:
         return rating;
     }
     virtual ~Media() = default;
-
+    Media(const std::string& name):name(name){} //debug
     virtual void displayDetails() const = 0;
 };
 

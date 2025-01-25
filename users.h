@@ -18,7 +18,11 @@ public:
     users();
     void addUser(int Id, string username,string password);
     bool ExistUser(string username, string password);
+    vector<Media*> advancedSearch(const string& key);
+    int levenshteinTwoMatrixRows(const string& str1,const string& str2);
+
     user findUser(string username, string password);
+
 };
 
 

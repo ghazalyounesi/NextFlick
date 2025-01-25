@@ -38,4 +38,6 @@ public:
     string getPassword(){return password;}
 
 };
+
+
 #endif //NEXTFLICK_USER_H

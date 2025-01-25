@@ -63,6 +63,8 @@ public:
     void printTree(_Node* node, const string& prefix);
     vector<Media*> search(const string& query);
     void collectResults(_Node* node, vector<Media*>& results);
+    vector<string> getAll();
+    void collect(_Node* node, string& currentKey, vector<string>& keys);
 };
 
 #endif //COMPRESSEDTRIE_H

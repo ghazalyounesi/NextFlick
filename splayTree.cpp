@@ -136,6 +136,26 @@ std::string splayTree::findMaxGenreWithDepthScore() {
     return maxGenre.empty() ? "No genres available" : maxGenre;
 }
 
+int splayTree::depth(int id) {
+    int d = 0;
+    Node* temp = root;
+
+    while (temp != nullptr) {
+        if (id == temp->key) {
+            return d;
+        }
+
+        if (id < temp->key) {
+            temp = temp->left;
+        } else {
+            temp = temp->right;
+        }
+        d++;
+    }
+    return -1;
+}
+
+
 Node* splayTree:: delete_key(struct Node* root, int key)
 {
     Node* temp;
