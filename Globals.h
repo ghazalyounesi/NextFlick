@@ -11,12 +11,12 @@
 #include "MediaHashTable.h"
 #include "CompressedTrie.h"
 #include "Media.h"
-
+#include "DecisionTree.h"
 
 extern splayTree GelobalSplayTree;
 extern MediaHashTable HashGenreRating;
 extern std::unordered_map<std::string, std::vector<int>> languageHashTable;
 extern std::unordered_map<std::string, std::vector<int>> countryHashTable;
 extern CompressedTrie compressedtrie;
-
+extern DecisionTree decisionTree;
 #endif //NEXTFLICK_GLOBALS_H

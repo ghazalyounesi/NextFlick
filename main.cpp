@@ -16,9 +16,10 @@ std::unordered_map<std::string, std::vector<int>> languageHashTable;
 std::unordered_map<std::string, std::vector<int>> countryHashTable;
 int countSparse=0;
 CompressedTrie compressedtrie;
+DecisionTree decisionTree;
 
 int main() {
-
+    decisionTree.buildTree();
     Film* a=new Film(0,"ghazal",2000,60,"iran","deram","persion",5.6,"ghggyfyfyfhvshjv");
     Film* b=new Film(1,"negin",2020,60,"iran","deram","persion",7.6,"ghggyfyfyfhvshjv");
     Film* c=new Film(2,"aven",2015,90,"usa","action","english",8.5,"ghggyfyfyfhvshjv");
@@ -31,6 +32,7 @@ int main() {
     languageHashTable[a->getlanguage()].push_back(a->getId());
     countryHashTable[a->getcountry()].push_back(a->getId());
     compressedtrie.insert(a);
+    decisionTree.insert(0);
     cout << "\nMovie added successfully!" << endl;
     countSparse++;
 
@@ -40,6 +42,7 @@ int main() {
     languageHashTable[b->getlanguage()].push_back(b->getId());
     countryHashTable[b->getcountry()].push_back(b->getId());
     compressedtrie.insert(b);
+    decisionTree.insert(1);
     cout << "\nMovie added successfully!" << endl;
     countSparse++;
 
@@ -49,6 +52,7 @@ int main() {
     languageHashTable[c->getlanguage()].push_back(c->getId());
     countryHashTable[c->getcountry()].push_back(c->getId());
     compressedtrie.insert(c);
+    decisionTree.insert(2);
     cout << "\nMovie added successfully!" << endl;
     countSparse++;
 
@@ -58,6 +62,7 @@ int main() {
     languageHashTable[d->getlanguage()].push_back(d->getId());
     countryHashTable[d->getcountry()].push_back(d->getId());
     compressedtrie.insert(d);
+    decisionTree.insert(3);
     cout << "\nMovie added successfully!" << endl;
     countSparse++;
 
@@ -67,6 +72,7 @@ int main() {
     languageHashTable[e->getlanguage()].push_back(e->getId());
     countryHashTable[e->getcountry()].push_back(e->getId());
     compressedtrie.insert(e);
+    decisionTree.insert(4);
     cout << "\nMovie added successfully!" << endl;
     countSparse++;
 
@@ -76,8 +82,11 @@ int main() {
     languageHashTable[f->getlanguage()].push_back(f->getId());
     countryHashTable[f->getcountry()].push_back(f->getId());
     compressedtrie.insert(f);
+    decisionTree.insert(5);
     cout << "\nMovie added successfully!" << endl;
     countSparse++;
+
+
 
     int cm;
     Ux ux;

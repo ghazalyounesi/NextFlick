@@ -53,6 +53,7 @@ void admin::addMovie() {
     languageHashTable[language].push_back(idMedia);
     countryHashTable[country].push_back(idMedia);
     compressedtrie.insert(movie);
+    decisionTree.insert(idMedia);
     cout << "\nMovie added successfully!" << endl;
     idMedia++;
     countSparse++;
@@ -96,6 +97,7 @@ void admin::addSeries() {
     languageHashTable[language].push_back(idMedia);
     countryHashTable[country].push_back(idMedia);
     compressedtrie.insert(series);
+    decisionTree.insert(idMedia);
     cout << "\nSeries added successfully!" << endl;
     idMedia++;
     countSparse++;
@@ -113,6 +115,7 @@ void admin::deletemedia(vector<Media*> media){
     HashGenreRating.removeMediaByName(mediaForDelete[n-1]->getname());
     sparseSetMedia[mediaForDelete[n-1]->getId()]= nullptr;
     compressedtrie.remove(mediaForDelete[n-1]);
+    decisionTree.remove(mediaForDelete[n-1]->getId());
     auto langIt = languageHashTable.find(mediaForDelete[n-1]->getlanguage());
     if (langIt != languageHashTable.end()) {
         auto& langVector = langIt->second;

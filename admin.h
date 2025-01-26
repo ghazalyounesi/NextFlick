@@ -14,7 +14,7 @@ using namespace std;
 class admin {
 protected:
     int id;
-    int idMedia=0;
+    int idMedia=6;
     string username;
     string password;
 public:

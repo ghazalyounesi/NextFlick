@@ -156,6 +156,7 @@ void Ux::SignIn() {
                         u.privilege();
                         break;
                     case 10:
+                        decisionTree.query();
                         break;
                     default:
                         if(cmd !=0){
