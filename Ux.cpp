@@ -112,6 +112,8 @@ void Ux::SignIn() {
             break;
         }
         else if (User.ExistUser(username , password)) {
+            string Mname , AName;
+            users _user;
             cout<<"log in\n";
             user u=User.findUser(username,password);
             while (cmd != 0) {
@@ -133,12 +135,17 @@ void Ux::SignIn() {
                         }
                         break;
                     case 2:
-
+                        cout<<"Enter the name movie: ";
+                        cin>>Mname;
+                        compressedtrie.search(Mname);
                         break;
                     case 3:
                         u.userInterfaceFilter();
                         break;
                     case 4:
+                        cout<<"\nEnter the name movie: ";
+                         cin>>AName;
+                        _user.advancedSearch(AName);
                         break;
                     case 5:
                         u.addFavoriteMovies();
