@@ -19,8 +19,67 @@ CompressedTrie compressedtrie;
 
 int main() {
 
-    int cm;
+    Film* a=new Film(0,"ghazal",2000,60,"iran","deram","persion",5.6,"ghggyfyfyfhvshjv");
+    Film* b=new Film(1,"negin",2020,60,"iran","deram","persion",7.6,"ghggyfyfyfhvshjv");
+    Film* c=new Film(2,"aven",2015,90,"usa","action","english",8.5,"ghggyfyfyfhvshjv");
+    Film* d=new Film(3,"hari",2005,60,"england","fantezi","english",7.3,"ghggyfyfyfhvshjv");
+    Film* e=new Film(4,"pathari",2006,60,"england","fantezi","english",7.5,"ghggyfyfyfhvshjv");
+    Film* f=new Film(5,"haripater",2003,60,"england","fantezi","english",8.3,"ghggyfyfyfhvshjv");
+    HashGenreRating.addMedia(a);
+    GelobalSplayTree.insert(a->getId());
+    sparseSetMedia[a->getId()]=a;
+    languageHashTable[a->getlanguage()].push_back(a->getId());
+    countryHashTable[a->getcountry()].push_back(a->getId());
+    compressedtrie.insert(a);
+    cout << "\nMovie added successfully!" << endl;
+    countSparse++;
 
+    HashGenreRating.addMedia(b);
+    GelobalSplayTree.insert(b->getId());
+    sparseSetMedia[b->getId()]=b;
+    languageHashTable[b->getlanguage()].push_back(b->getId());
+    countryHashTable[b->getcountry()].push_back(b->getId());
+    compressedtrie.insert(b);
+    cout << "\nMovie added successfully!" << endl;
+    countSparse++;
+
+    HashGenreRating.addMedia(c);
+    GelobalSplayTree.insert(c->getId());
+    sparseSetMedia[c->getId()]=c;
+    languageHashTable[c->getlanguage()].push_back(c->getId());
+    countryHashTable[c->getcountry()].push_back(c->getId());
+    compressedtrie.insert(c);
+    cout << "\nMovie added successfully!" << endl;
+    countSparse++;
+
+    HashGenreRating.addMedia(d);
+    GelobalSplayTree.insert(d->getId());
+    sparseSetMedia[d->getId()]=d;
+    languageHashTable[d->getlanguage()].push_back(d->getId());
+    countryHashTable[d->getcountry()].push_back(d->getId());
+    compressedtrie.insert(d);
+    cout << "\nMovie added successfully!" << endl;
+    countSparse++;
+
+    HashGenreRating.addMedia(e);
+    GelobalSplayTree.insert(e->getId());
+    sparseSetMedia[e->getId()]=e;
+    languageHashTable[e->getlanguage()].push_back(e->getId());
+    countryHashTable[e->getcountry()].push_back(e->getId());
+    compressedtrie.insert(e);
+    cout << "\nMovie added successfully!" << endl;
+    countSparse++;
+
+    HashGenreRating.addMedia(f);
+    GelobalSplayTree.insert(f->getId());
+    sparseSetMedia[f->getId()]=f;
+    languageHashTable[f->getlanguage()].push_back(f->getId());
+    countryHashTable[f->getcountry()].push_back(f->getId());
+    compressedtrie.insert(f);
+    cout << "\nMovie added successfully!" << endl;
+    countSparse++;
+
+    int cm;
     Ux ux;
     while (cm != 0) {
         ux.Menu();

@@ -76561,6 +76561,7 @@ protected:
     int numberRated=0;
     std::string summary;
 
+
 public:
     Media(int ID,const std::string& name, int releaseYear, const std::string& country,const std::string& genre, const std::string& language, double rating, const std::string& summary)
             : id(ID), name(name), releaseYear(releaseYear), country(country),genre(genre), language(language), rating(rating), summary(summary) {}
@@ -76628,6 +76629,7 @@ public:
     void collectResults(_Node* node, vector<Media*>& results);
     vector<string> getAll();
     void collect(_Node* node, string& currentKey, vector<string>& keys);
+    void remove(Media *node);
 };
 # 2 "/home/ghazal/CLionProjects/NextFlick/CompressedTrie.cpp" 2
 
@@ -76771,4 +76773,34 @@ vector<Media*> CompressedTrie:: search(const string& key) {
     }
 
     return results;
+}
+
+void CompressedTrie::remove(Media *node) {
+    _Node* current = root;
+    string remainingKey = node->getname();
+    while (!remainingKey.empty()) {
+        bool isEdgeFound = false;
+        for (auto it = current->children.begin(); it != current->children.end(); ++it) {
+            string edgeLabel = it->first;
+            int commonPrefixLength = findCommonPrefix(remainingKey, edgeLabel);
+            if (commonPrefixLength > 0) {
+                isEdgeFound = true;
+                int commonPrefixLength = findCommonPrefix(remainingKey, edgeLabel);
+                if (commonPrefixLength == edgeLabel.size()) {
+                    current = it->second;
+                }
+                else {
+                    return;
+                }
+                break;
+            }
+        }
+        if (!isEdgeFound) {
+            return;
+        }
+    }
+    if (current->isEnd) {
+        current->isEnd = false;
+        current->mediaMap.erase(node->getname());
+    }
 }

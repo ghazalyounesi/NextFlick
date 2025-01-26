@@ -4,7 +4,7 @@
 
 #include "Ux.h"
 #include "users.h"
-#include "admin.h"
+
 
 bool Ux::isValidPassword(const std::string& password) {
     //cout<<password.length();
@@ -73,8 +73,10 @@ void Ux::SignUp(){
 
 void Ux::SignIn() {
     int cmd;
+    string name;
+    string username;
+    vector<Media*> media;
     while (true) {
-        string username;
         std::cout<<"Sign In"<<std::endl;
         std::cout<<"Please Enter Your UserName"<<std::endl;
         cin>>username;
@@ -84,7 +86,6 @@ void Ux::SignIn() {
         if (username == "admin" && password == "admin") {
             cout<<"Admin\n";
             //adminpannel
-            admin Admin;
             while (cmd != 0) {
                 AdminMenu();
                 cout<<"Enter Command:"<<endl;
@@ -95,6 +96,10 @@ void Ux::SignIn() {
                         Admin.addContent();
                         break;
                     case 2:
+                        cout<<"Enter the name movie: ";
+                        cin>>name;
+                        media=User.advancedSearch(name);
+                        Admin.deletemedia(media);
                         break;
                     default:
                         if(cmd!=0){
@@ -117,7 +122,7 @@ void Ux::SignIn() {
                 switch (cmd) {
                     case 1:
                         for(int i=0;i<countSparse;++i){
-                            if(sparseSetMedia[i]){
+                            if(sparseSetMedia[i]!= nullptr){
                                 cout<<sparseSetMedia[i]->getname()<<"\n";
                                 cout<<"   Genre: "<<sparseSetMedia[i]->getgenre()<<"\n";
                                 cout<<"   Summery: "<<sparseSetMedia[i]->getsummery()<<"\n";

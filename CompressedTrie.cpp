@@ -141,3 +141,33 @@ vector<Media*> CompressedTrie:: search(const string& key) {
 
     return results;
 }
+
+void CompressedTrie::remove(Media *node) {
+    _Node* current = root;
+    string remainingKey = node->getname();
+    while (!remainingKey.empty()) {
+        bool isEdgeFound = false;
+        for (auto it = current->children.begin(); it != current->children.end(); ++it) {
+            string edgeLabel = it->first;
+            int commonPrefixLength = findCommonPrefix(remainingKey, edgeLabel);
+            if (commonPrefixLength > 0) {
+                isEdgeFound = true;
+                int commonPrefixLength = findCommonPrefix(remainingKey, edgeLabel);
+                if (commonPrefixLength == edgeLabel.size()) {
+                    current = it->second;
+                }
+                else {
+                    return;
+                }
+                break;
+            }
+        }
+        if (!isEdgeFound) {
+            return;
+        }
+    }
+    if (current->isEnd) {
+        current->isEnd = false;
+        current->mediaMap.erase(node->getname());
+    }
+}

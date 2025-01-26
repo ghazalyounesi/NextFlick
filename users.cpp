@@ -68,7 +68,7 @@ vector<Media*> users::advancedSearch(const string& str) {
 
     vector<string> keys = compressedtrie.getAll();
     for (const string& key : keys) {
-        if (levenshteinTwoMatrixRows(str, key) <= 2 || str == key) {
+        if (levenshteinTwoMatrixRows(str, key) <= 3 || str == key) {
             vector<Media*> temp = compressedtrie.search(key);
             for (Media* m : temp) {
                 if (seen.find(m->getId()) == seen.end()) {
@@ -97,7 +97,9 @@ vector<Media*> users::advancedSearch(const string& str) {
 
     vector<Media*> sortedRes;
     for (const auto& p : vec) {
-        sortedRes.push_back(p.first);
+
+            sortedRes.push_back(p.first);
+
     }
     return sortedRes;
 }

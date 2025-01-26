@@ -24,6 +24,9 @@ public:
     void addContent();
     void addMovie();
     void addSeries();
+    void deletemedia(vector<Media*> media);
+    void countingSort(vector<Media*>& media, int exp);
+    vector<Media*> radixSort(vector<Media*>& media);
 };
 
 

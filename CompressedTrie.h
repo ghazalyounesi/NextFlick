@@ -65,6 +65,7 @@ public:
     void collectResults(_Node* node, vector<Media*>& results);
     vector<string> getAll();
     void collect(_Node* node, string& currentKey, vector<string>& keys);
+    void remove(Media *node);
 };
 
 #endif //COMPRESSEDTRIE_H

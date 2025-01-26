@@ -69798,6 +69798,7 @@ protected:
     int numberRated=0;
     std::string summary;
 
+
 public:
     Media(int ID,const std::string& name, int releaseYear, const std::string& country,const std::string& genre, const std::string& language, double rating, const std::string& summary)
             : id(ID), name(name), releaseYear(releaseYear), country(country),genre(genre), language(language), rating(rating), summary(summary) {}
@@ -80486,8 +80487,9 @@ class splayTree {
         Node* getRoot() {
             return root;
         }
-    int depth(int id );
-        Node* delete_key(Node* root, int key);
+         int depth(int id );
+        Node* delete_key(int key);
+        void displayAllNodes(Node* node);
 
 };
 # 11 "/home/ghazal/CLionProjects/NextFlick/Globals.h" 2
@@ -80574,6 +80576,7 @@ public:
     void collectResults(_Node* node, vector<Media*>& results);
     vector<string> getAll();
     void collect(_Node* node, string& currentKey, vector<string>& keys);
+    void remove(Media *node);
 };
 # 13 "/home/ghazal/CLionProjects/NextFlick/Globals.h" 2
 
@@ -80597,8 +80600,9 @@ protected:
 public:
     user(int Id, string Username, string Password): id(Id),username(Username),password(Password){}
     void recommend();
+    void radixSort(vector<pair<int, int>>& data, int maxKey);
     vector<pair<int,int>> SortYear();
-    vector<pair<float, int>> SortScore();
+    vector<pair<int, int>> SortScore();
     vector<const Media*> filterByGenre(const string& genre);
     vector<const Media*> filterByGenreAndRating(const string& genre, float minRating);
     vector<const Media*> filterByLanguage(const string& language);
@@ -80639,21 +80643,6 @@ public:
 };
 # 11 "/home/ghazal/CLionProjects/NextFlick/Ux.h" 2
 using namespace std;
-
-class Ux {
-protected:
-    users User;
-    int id=0;
-public:
-    bool isValidPassword(const std::string& password);
-    void SignUp();
-    void SignIn();
-    void Menu();
-    void AdminMenu();
-    void userMenu();
-
-};
-# 6 "/home/ghazal/CLionProjects/NextFlick/Ux.cpp" 2
 
 # 1 "/home/ghazal/CLionProjects/NextFlick/admin.h" 1
 
@@ -80736,8 +80725,28 @@ public:
     void addContent();
     void addMovie();
     void addSeries();
+    void deletemedia(vector<Media*> media);
+    void countingSort(vector<Media*>& media, int exp);
+    vector<Media*> radixSort(vector<Media*>& media);
 };
-# 8 "/home/ghazal/CLionProjects/NextFlick/Ux.cpp" 2
+# 14 "/home/ghazal/CLionProjects/NextFlick/Ux.h" 2
+class Ux {
+protected:
+    users User;
+    admin Admin;
+    int id=0;
+public:
+    bool isValidPassword(const std::string& password);
+    void SignUp();
+    void SignIn();
+    void Menu();
+    void AdminMenu();
+    void userMenu();
+
+};
+# 6 "/home/ghazal/CLionProjects/NextFlick/Ux.cpp" 2
+
+
 
 bool Ux::isValidPassword(const std::string& password) {
 
@@ -80806,8 +80815,10 @@ void Ux::SignUp(){
 
 void Ux::SignIn() {
     int cmd;
+    string name;
+    string username;
+    vector<Media*> media;
     while (true) {
-        string username;
         std::cout<<"Sign In"<<std::endl;
         std::cout<<"Please Enter Your UserName"<<std::endl;
         cin>>username;
@@ -80817,7 +80828,6 @@ void Ux::SignIn() {
         if (username == "admin" && password == "admin") {
             cout<<"Admin\n";
 
-            admin Admin;
             while (cmd != 0) {
                 AdminMenu();
                 cout<<"Enter Command:"<<endl;
@@ -80828,6 +80838,10 @@ void Ux::SignIn() {
                         Admin.addContent();
                         break;
                     case 2:
+                        cout<<"Enter the name movie: ";
+                        cin>>name;
+                        media=User.advancedSearch(name);
+                        Admin.deletemedia(media);
                         break;
                     default:
                         if(cmd!=0){
@@ -80850,7 +80864,7 @@ void Ux::SignIn() {
                 switch (cmd) {
                     case 1:
                         for(int i=0;i<countSparse;++i){
-                            if(sparseSetMedia[i]){
+                            if(sparseSetMedia[i]!= nullptr){
                                 cout<<sparseSetMedia[i]->getname()<<"\n";
                                 cout<<"   Genre: "<<sparseSetMedia[i]->getgenre()<<"\n";
                                 cout<<"   Summery: "<<sparseSetMedia[i]->getsummery()<<"\n";

@@ -31,8 +31,9 @@ class splayTree {
         Node* getRoot() {
             return root;
         }
-    int depth(int id );
-        Node* delete_key(Node* root, int key);
+         int depth(int id );
+        Node* delete_key(int key);
+        void displayAllNodes(Node* node);
 
 };
 

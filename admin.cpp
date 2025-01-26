@@ -100,3 +100,76 @@ void admin::addSeries() {
     idMedia++;
     countSparse++;
 }
+
+void admin::deletemedia(vector<Media*> media){
+    vector<Media*> mediaForDelete= radixSort(media);
+    for(int i=0;i<mediaForDelete.size();++i){
+        cout<<i+1<<"- "<<mediaForDelete[i]->getname()<<" ("<<mediaForDelete[i]->getYear()<<")\n";
+    }
+    cout<<" enter the number of movie that you want delete: ";
+    int n;
+    cin>>n;
+    GelobalSplayTree.delete_key(mediaForDelete[n-1]->getId());
+    HashGenreRating.removeMediaByName(mediaForDelete[n-1]->getname());
+    sparseSetMedia[mediaForDelete[n-1]->getId()]= nullptr;
+    compressedtrie.remove(mediaForDelete[n-1]);
+    auto langIt = languageHashTable.find(mediaForDelete[n-1]->getlanguage());
+    if (langIt != languageHashTable.end()) {
+        auto& langVector = langIt->second;
+        for (auto it = langVector.begin(); it != langVector.end(); ++it) {
+            if (*it == mediaForDelete[n-1]->getId()) {
+                langVector.erase(it);
+                break;
+            }
+        }
+    }
+
+    auto countryIt = countryHashTable.find(mediaForDelete[n-1]->getcountry());
+    if (countryIt != countryHashTable.end()) {
+        auto& countryVector = countryIt->second;
+        for (auto it = countryVector.begin(); it != countryVector.end(); ++it) {
+            if (*it == mediaForDelete[n-1]->getId()) {
+                countryVector.erase(it);
+                break;
+            }
+        }
+    }
+
+}
+
+void admin::countingSort(vector<Media*>& media, int exp) {
+    int n = media.size();
+    vector<Media*> output(n);
+    int count[10] = {0};
+
+    for (int i = 0; i < n; i++) {
+        int digit = (media[i]->getYear() / exp) % 10;
+        count[digit]++;
+    }
+
+    for (int i = 1; i < 10; i++) {
+        count[i] += count[i - 1];
+    }
+
+    for (int i = n - 1; i >= 0; i--) {
+        int digit = (media[i]->getYear() / exp) % 10;
+        output[count[digit] - 1] = media[i];
+        count[digit]--;
+    }
+
+    for (int i = 0; i < n; i++) {
+        media[i] = output[i];
+    }
+}
+
+vector<Media*> admin::radixSort(vector<Media*>& media) {
+    int maxYear = 0;
+    for (Media* m : media) {
+        maxYear = max(maxYear, m->getYear());
+    }
+
+    for (int exp = 1; maxYear / exp > 0; exp *= 10) {
+        countingSort(media, exp);
+    }
+    return media;
+}

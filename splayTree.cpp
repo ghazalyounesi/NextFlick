@@ -156,7 +156,7 @@ int splayTree::depth(int id) {
 }
 
 
-Node* splayTree:: delete_key(struct Node* root, int key)
+Node* splayTree:: delete_key(int key)
 {
     Node* temp;
     if (!root)
@@ -177,6 +177,15 @@ Node* splayTree:: delete_key(struct Node* root, int key)
         root->right = temp->right;
     }
     free(temp);
-
+    displayAllNodes(root);
     return root;
+}
+
+void splayTree::displayAllNodes(Node* node) {
+    if (node == nullptr)
+        return;
+
+    displayAllNodes(node->left);
+    std::cout << node->key << " ";
+    displayAllNodes(node->right);
 }

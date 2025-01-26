@@ -8,71 +8,73 @@ void user::recommend() {
     HashGenreRating.printTop10MoviesByGenre(MaxGenre);
 }
 
-vector<pair<int,int>> user::SortYear(){
-    int N=countSparse;
+void user::radixSort(vector<pair<int, int>>& data, int maxKey) {
+    int n = data.size();
+    vector<pair<int, int>> output(n);
+    int exp = 1;
+    while (maxKey / exp > 0) {
+        vector<int> count(10, 0);
+
+        for (int i = 0; i < n; i++) {
+            int digit = (data[i].first / exp) % 10;
+            count[digit]++;
+        }
+
+        for (int i = 1; i < 10; i++) {
+            count[i] += count[i - 1];
+        }
+
+        for (int i = n - 1; i >= 0; i--) {
+            int digit = (data[i].first / exp) % 10;
+            output[count[digit] - 1] = data[i];
+            count[digit]--;
+        }
+
+
+        for (int i = 0; i < n; i++) {
+            data[i] = output[i];
+        }
+
+        exp *= 10;
+    }
+}
+
+
+vector<pair<int, int>>user:: SortYear() {
+    vector<pair<int, int>> yearData;
+    for (int i = 0; i < countSparse; i++) {
+        if (sparseSetMedia[i]) {
+            yearData.emplace_back(sparseSetMedia[i]->getYear(), sparseSetMedia[i]->getId());
+        }
+    }
+
     int maxYear = 0;
-    for (int i = 0; i < N; i++) {
-        if(sparseSetMedia[i]!= nullptr){
-            maxYear = max(maxYear, sparseSetMedia[i]->getYear());
-        }
-    }
-    vector<int> countArray(maxYear + 1, 0);
-
-    for (int i = 0; i < N; i++) {
-        if(sparseSetMedia[i]!= nullptr){
-            countArray[sparseSetMedia[i]->getYear()]++;
-        }
+    for (const auto& entry : yearData) {
+        maxYear = max(maxYear, entry.first);
     }
 
-    for (int i = maxYear - 1; i >= 0; i--) {
-        countArray[i] += countArray[i + 1];
-    }
+    radixSort(yearData, maxYear);
 
-    vector<pair<int,int>> outputArray(N);
-    for (int i = 0; i < N; i++) {
-        if(sparseSetMedia[i]!= nullptr){
-            outputArray[countArray[sparseSetMedia[i]->getYear()] - 1].second = sparseSetMedia[i]->getId();
-            outputArray[countArray[sparseSetMedia[i]->getYear()] - 1].first = sparseSetMedia[i]->getYear();
-            countArray[sparseSetMedia[i]->getYear()]--;
-        }
-    }
-
-    return outputArray;
+    return yearData;
 }
 
-vector<pair<float, int>> user::SortScore() {
-    int N = countSparse;
+vector<pair<int, int>> user::SortScore() {
+    vector<pair<int, int>> scoreData;
 
-    int maxScore = 0;
-    vector<int> intScores(N);
-    for (int i = 0; i < N; i++) {
-        if(sparseSetMedia[i]!= nullptr){
-            intScores[i] = static_cast<int>(sparseSetMedia[i]->getrating() * 10);
-            maxScore = max(maxScore, intScores[i]);
+    for (int i = 0; i < countSparse; i++) {
+        if (sparseSetMedia[i]) {
+            int score = static_cast<int>(sparseSetMedia[i]->getrating() * 10); // تبدیل به عدد صحیح
+            scoreData.emplace_back(score, sparseSetMedia[i]->getId());
         }
     }
 
-    vector<int> countArray(maxScore + 1, 0);
-    for (int i = 0; i < N; i++) {
-        countArray[intScores[i]]++;
-    }
+    int maxScore = 100;
 
-    for (int i = maxScore - 1; i >= 0; i--) {
-        countArray[i] += countArray[i + 1];
-    }
+    radixSort(scoreData, maxScore);
 
-    vector<pair<float, int>> outputArray(N);
-    for (int i = 0; i < N; i++) {
-        if(sparseSetMedia[i]!= nullptr){
-            int intScore = intScores[i];
-            outputArray[countArray[intScore] - 1].first = intScore / 10.0f;
-            outputArray[countArray[intScore] - 1].second = sparseSetMedia[i]->getId();
-            countArray[intScore]--;
-        }
-    }
-
-    return outputArray;
+    return scoreData;
 }
+
 
 vector<const Media*> user::filterByGenre(const string& genre) {
     vector<const Media*> result;
@@ -120,7 +122,7 @@ vector<const Media*> user::filterByCountry(const string& country) {
 
 vector<const Media*> user::filterByRating(float minRating) {
     vector<const Media*> result;
-    vector<pair<float, int>> ratingVector=SortScore();
+    vector<pair<int, int>> ratingVector=SortScore();
     for (const auto& [rating, id] : ratingVector) {
         if (rating < minRating) break;
         if (sparseSetMedia[id] != nullptr) {

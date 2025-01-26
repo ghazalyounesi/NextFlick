@@ -69785,6 +69785,7 @@ protected:
     int numberRated=0;
     std::string summary;
 
+
 public:
     Media(int ID,const std::string& name, int releaseYear, const std::string& country,const std::string& genre, const std::string& language, double rating, const std::string& summary)
             : id(ID), name(name), releaseYear(releaseYear), country(country),genre(genre), language(language), rating(rating), summary(summary) {}
@@ -80462,8 +80463,9 @@ class splayTree {
         Node* getRoot() {
             return root;
         }
-    int depth(int id );
-        Node* delete_key(Node* root, int key);
+         int depth(int id );
+        Node* delete_key(int key);
+        void displayAllNodes(Node* node);
 
 };
 # 6 "/home/ghazal/CLionProjects/NextFlick/splayTree.cpp" 2
@@ -80620,7 +80622,7 @@ int splayTree::depth(int id) {
 }
 
 
-Node* splayTree:: delete_key(struct Node* root, int key)
+Node* splayTree:: delete_key(int key)
 {
     Node* temp;
     if (!root)
@@ -80645,6 +80647,15 @@ Node* splayTree:: delete_key(struct Node* root, int key)
         root->right = temp->right;
     }
     free(temp);
-
+    displayAllNodes(root);
     return root;
+}
+
+void splayTree::displayAllNodes(Node* node) {
+    if (node == nullptr)
+        return;
+
+    displayAllNodes(node->left);
+    std::cout << node->key << " ";
+    displayAllNodes(node->right);
 }

@@ -10,9 +10,11 @@
 #include "users.h"
 using namespace std;
 #include "users.h"
+#include "admin.h"
 class Ux {
 protected:
     users User;
+    admin Admin;
     int id=0;
 public:
     bool isValidPassword(const std::string& password);

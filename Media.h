@@ -22,6 +22,7 @@ protected:
     int numberRated=0;
     std::string summary;
 
+
 public:
     Media(int ID,const std::string& name, int releaseYear, const std::string& country,const std::string& genre, const std::string& language, double rating, const std::string& summary)
             : id(ID), name(name), releaseYear(releaseYear), country(country),genre(genre), language(language), rating(rating), summary(summary) {}

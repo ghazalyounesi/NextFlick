@@ -18,8 +18,9 @@ protected:
 public:
     user(int Id, string Username, string Password): id(Id),username(Username),password(Password){}
     void recommend();
+    void radixSort(vector<pair<int, int>>& data, int maxKey);
     vector<pair<int,int>> SortYear();
-    vector<pair<float, int>> SortScore();
+    vector<pair<int, int>> SortScore();
     vector<const Media*> filterByGenre(const string& genre);
     vector<const Media*> filterByGenreAndRating(const string& genre, float minRating);
     vector<const Media*> filterByLanguage(const string& language);
