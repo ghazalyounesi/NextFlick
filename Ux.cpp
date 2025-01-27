@@ -100,6 +100,7 @@ void Ux::SignIn() {
                         cin>>name;
                         media=User.advancedSearch(name);
                         Admin.deletemedia(media);
+                        User.deleteMediaFromFlists(name);
                         break;
                     default:
                         if(cmd!=0){
@@ -132,6 +133,7 @@ void Ux::SignIn() {
                                 cout<<"   language: "<<sparseSetMedia[i]->getlanguage()<<"\n";
                                 cout<<"   country: "<<sparseSetMedia[i]->getcountry()<<"\n";
                                 cout<<"   year: "<<sparseSetMedia[i]->getYear()<<"\n";
+                                cout<<"   rating: "<<sparseSetMedia[i]->getrating()<<"\n";
                             }
                         }
                         break;

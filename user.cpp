@@ -225,7 +225,7 @@ void user::privilege() {
     cout<<"Enter the score you give to the movie: ";
     cin>>rating;
     for(int i=0;i<countSparse;++i){
-        if(sparseSetMedia[favoriteMovies[i]]&&sparseSetMedia[i]->getname()==name){
+        if(sparseSetMedia[i]&&sparseSetMedia[i]->getname()==name){
             sparseSetMedia[i]->averageRating(rating);
             cout<<"Done successfully. \n";
             return;
@@ -241,7 +241,7 @@ void user::addFavoriteMovies() {
     cin>>name;
     cout<<"\n";
     for(int i=0;i<countSparse;++i){
-        if(sparseSetMedia[favoriteMovies[i]]&&sparseSetMedia[i]->getname()==name){
+        if(sparseSetMedia[i]&&sparseSetMedia[i]->getname()==name){
             favoriteMovies.push_back(i);
             cout<<"Done successfully. \n";
             return;
@@ -265,6 +265,15 @@ void user::deleteFromFavoriteMovies() {
     }
     cout<<"movie not found. \n";
     return;
+}
+
+void user::deleteFromFavoriteMovies1(string name){
+    for(int i=0;i<favoriteMovies.size();++i){
+        if(sparseSetMedia[favoriteMovies[i]]&&sparseSetMedia[favoriteMovies[i]]->getname()==name){
+            favoriteMovies.erase(favoriteMovies.begin() + i);
+            return;
+        }
+    }
 }
 
 void user::merge(std::vector<int>& vec, int left, int mid, int right) {

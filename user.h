@@ -32,6 +32,7 @@ public:
     void privilege();
     void addFavoriteMovies();
     void deleteFromFavoriteMovies();
+    void deleteFromFavoriteMovies1(string name);
     void merge(std::vector<int>& vec, int left, int mid, int right);
     void mergeSort(std::vector<int>& vec, int left, int right);
     void showFavoriteMovies();

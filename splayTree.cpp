@@ -177,7 +177,7 @@ Node* splayTree:: delete_key(int key)
         root->right = temp->right;
     }
     free(temp);
-    displayAllNodes(root);
+    //displayAllNodes(root);
     return root;
 }
 

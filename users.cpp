@@ -67,7 +67,7 @@ void merge(vector<pair<Media*, int>>& vec, int left, int mid, int right) {
     int i = left, j = mid + 1;
 
     while (i <= mid && j <= right) {
-        if (vec[i].second >= vec[j].second) {
+        if (vec[i].second <= vec[j].second) {
             temp.push_back(vec[i++]);
         } else {
             temp.push_back(vec[j++]);
@@ -143,3 +143,8 @@ user users::findUser(std::string username, std::string password) {
     }
 }
 
+void users::deleteMediaFromFlists(string name){
+    for(int i=0; i<arrUsers.size();++i){
+        arrUsers[i].deleteFromFavoriteMovies1(name);
+    }
+}
