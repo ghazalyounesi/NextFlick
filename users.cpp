@@ -62,13 +62,42 @@ int users::levenshteinTwoMatrixRows(const string& str1,
 
     return currRow[n];
 }
+void merge(vector<pair<Media*, int>>& vec, int left, int mid, int right) {
+    vector<pair<Media*, int>> temp;
+    int i = left, j = mid + 1;
+
+    while (i <= mid && j <= right) {
+        if (vec[i].second >= vec[j].second) {
+            temp.push_back(vec[i++]);
+        } else {
+            temp.push_back(vec[j++]);
+        }
+    }
+
+    while (i <= mid) temp.push_back(vec[i++]);
+    while (j <= right) temp.push_back(vec[j++]);
+
+    for (int k = left; k <= right; k++) {
+        vec[k] = temp[k - left];
+    }
+}
+
+
+void mergeSort(vector<pair<Media*, int>>& vec, int left, int right) {
+    if (left < right) {
+        int mid = left + (right - left) / 2;
+        mergeSort(vec, left, mid);
+        mergeSort(vec, mid + 1, right);
+        merge(vec, left, mid, right);
+    }
+}
 vector<Media*> users::advancedSearch(const string& str) {
     vector<Media*> res;
     set<int> seen;
 
     vector<string> keys = compressedtrie.getAll();
     for (const string& key : keys) {
-        if (levenshteinTwoMatrixRows(str, key) <= 3 || str == key) {
+        if (levenshteinTwoMatrixRows(str, key) <= 2 || str == key) {
             vector<Media*> temp = compressedtrie.search(key);
             for (Media* m : temp) {
                 if (seen.find(m->getId()) == seen.end()) {
@@ -91,10 +120,10 @@ vector<Media*> users::advancedSearch(const string& str) {
         vec.push_back({m, GelobalSplayTree.depth(m->getId())});
     }
 
-    sort(vec.begin(), vec.end(), [](const pair<Media*, int>& a, const pair<Media*, int>& b) {
+    /*sort(vec.begin(), vec.end(), [](const pair<Media*, int>& a, const pair<Media*, int>& b) {
         return a.second > b.second;
-    });
-
+    });*/
+    mergeSort(vec, 0, res.size() - 1);
     vector<Media*> sortedRes;
     for (const auto& p : vec) {
 

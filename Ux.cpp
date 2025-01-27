@@ -72,7 +72,7 @@ void Ux::SignUp(){
 }
 
 void Ux::SignIn() {
-    int cmd;
+    int cmd = -1;
     string name;
     string username;
     vector<Media*> media;
@@ -113,6 +113,7 @@ void Ux::SignIn() {
         }
         else if (User.ExistUser(username , password)) {
             string Mname , AName;
+            vector<Media*> media;
             users _user;
             cout<<"log in\n";
             user u=User.findUser(username,password);
@@ -134,18 +135,47 @@ void Ux::SignIn() {
                             }
                         }
                         break;
-                    case 2:
+                    case 2: {
                         cout<<"Enter the name movie: ";
                         cin>>Mname;
-                        compressedtrie.search(Mname);
+                        media = compressedtrie.search(Mname);
+                        int i = 0;
+                        int x;
+                        for (auto m : media) {
+                            cout<<i<<": "<<m->getname()<<"\n";
+                            i++;
+                        }
+                        cout<<"choose : ";
+                        cin>> x;
+                        GelobalSplayTree.find(media[x]->getId());
+                        cout<<"   Genre: "<<media[x]->getgenre()<<"\n";
+                        cout<<"   Summery: "<<media[x]->getsummery()<<"\n";
+                        cout<<"   language: "<<media[x]->getlanguage()<<"\n";
+                        cout<<"   country: "<<media[x]->getcountry()<<"\n";
+                        cout<<"   year: "<<media[x]->getYear()<<"\n";
+                        }
                         break;
                     case 3:
                         u.userInterfaceFilter();
                         break;
-                    case 4:
+                    case 4: {
                         cout<<"\nEnter the name movie: ";
-                         cin>>AName;
-                        _user.advancedSearch(AName);
+                        cin>>AName;
+                        media =  _user.advancedSearch(AName);
+                        int i = 0,x;
+                        for (auto m : media) {
+                            cout<<i<<": "<<m->getname()<<"\n";
+                            i++;
+                        }
+                        cout<<"choose : ";
+                        cin>> x;
+                        GelobalSplayTree.find(media[x]->getId());
+                        cout<<"   Genre: "<<media[x]->getgenre()<<"\n";
+                        cout<<"   Summery: "<<media[x]->getsummery()<<"\n";
+                        cout<<"   language: "<<media[x]->getlanguage()<<"\n";
+                        cout<<"   country: "<<media[x]->getcountry()<<"\n";
+                        cout<<"   year: "<<media[x]->getYear()<<"\n";
+                        }
                         break;
                     case 5:
                         u.addFavoriteMovies();

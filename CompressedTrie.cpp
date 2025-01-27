@@ -52,7 +52,7 @@ void CompressedTrie::insert(Media *film) {
         current->isEnd = true;
         current->mediaMap[film->getname()] = film;
 
-        // Debug: Print the tree structure after inserting each film
+
         /*cout << "Inserted: " << film->getname() << endl;
         printTree(root, "");*/
 }
@@ -125,6 +125,7 @@ vector<Media*> CompressedTrie:: search(const string& key) {
                     if (remainingKey.empty()) {
                         collectResults(current, results);
                     }
+
                 } else {
                     collectResults(it.second, results);
                     remainingKey.clear();

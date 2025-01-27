@@ -48,13 +48,6 @@ public:
          deleteTree(root);
      }*/
 
-    /*void deleteTree(Node* node) {
-        if (!node) return;
-        for (auto& child : node->children) {
-            deleteTree(child.second);
-        }
-        delete node;
-    }*/
 
     _Node* getRoot() {
         return root;
